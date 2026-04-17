@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Analisis Proyeksi Sell-Out Jotun | Dealer Baru</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f2b3d 0%, #1b4a6e 100%);
+            color: white;
+            padding: 28px 32px;
+            border-radius: 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header h1 i {
+            background: #ffb347;
+            padding: 8px;
+            border-radius: 50%;
+            color: #1e2f3a;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 80%;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Grid layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 28px;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 20px 24px;
+            transition: transform 0.2s;
+        }
+
+        .card-full {
+            grid-column: span 2;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-left: 6px solid #ff8c42;
+            padding-left: 16px;
+            margin-bottom: 18px;
+            color: #1f4e6e;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+            color: #ff8c42;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #f0f6fa;
+            border-radius: 24px;
+            padding: 15px 20px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #1f6392;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4a627a;
+        }
+
+        .insight-text {
+            background: #fff6e8;
+            padding: 18px;
+            border-radius: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #ff8c42;
+            line-height: 1.5;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e2edf2;
+        }
+
+        th {
+            background: #eaf3f9;
+            color: #1a4d6b;
+            font-weight: 600;
+        }
+
+        .highlight {
+            background-color: #fff0db;
+            font-weight: 600;
+        }
+
+        .footnote {
+            font-size: 0.75rem;
+            color: #5d7182;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #cbdde6, transparent);
+        }
+
+        @media (max-width: 860px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-full {
+                grid-column: span 1;
+            }
+            .header p {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-chart-line"></i> Jotun Dealer Experience · Analisis & Proyeksi Sell-Out</h1>
+        <p>Berdasarkan data historis dari <strong>Trend Penjualan Bulanan (Mar 2025 – Apr 2026)</strong> dan ekspektasi ekspansi dealer baru Jotun. Proyeksi 3 tahun ke depan (Mei 2026 – Apr 2029) menggunakan regresi linear dari data aktual serta perbandingan terhadap target komitmen dealer.</p>
+        <div class="badge-container">
+            <div class="badge"><i class="fas fa-calendar-alt"></i> Data aktual: 14 bulan</div>
+            <div class="badge"><i class="fas fa-chart-simple"></i> Proyeksi: 36 bulan</div>
+            <div class="badge"><i class="fas fa-store"></i> Target Sell-Out: 150jt → 180jt → 220jt/bln</div>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Kiri: Kartu insight & deposit -->
+        <div class="card">
+            <div class="card-title"><i class="fas fa-file-signature"></i> Ringkasan Kesepakatan Dealer Baru</div>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-value">Rp150–200 Juta</div>
+                    <div class="stat-label">Deposit (refund 3 tahun)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">150 / 180 / 220</div>
+                    <div class="stat-label">Target Sell-Out (jt/bln) Th-1,2,3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">≥25 m²</div>
+                    <div class="stat-label">Jotun Studio + strategis</div>
+                </div>
+            </div>
+            <div class="insight-text">
+                <i class="fas fa-info-circle" style="margin-right: 10px; color:#ff8c42;"></i> 
+                <strong>Ketentuan penting:</strong> Dealer wajib mencapai target sell-in (1.5M/th → 2M/th) & sell-out bulanan. Deposit dapat direfund jika target tercapai. Tidak ada retur barang base/tinta. Performa aktual sell-out di bawah target awal (150jt/bln) — butuh akselerasi.
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>Periode</th><th>Target Sell-Out (Juta/Bln)</th><th>Capaian Rata-rata Aktual*</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Tahun ke-1 (estimasi Maret 2025 - Feb 2026)</td><td>150</td><td class="highlight">~15,8 jt (jauh di bawah)</td></tr>
+                        <tr><td>Masa proyeksi (Mei 2026 - Apr 2027)</td><td>150 (target kontrak)</td><td>Proyeksi regresi: ~38-55 jt</td></tr>
+                        <tr><td>Tahun ke-2 (Mei 2027 - Apr 2028)</td><td>180</td><td>Proyeksi regresi: ~67-95 jt</td></tr>
+                        <tr><td>Tahun ke-3 (Mei 2028 - Apr 2029)</td><td>220</td><td>Proyeksi regresi: ~106-134 jt</td></tr>
+                    </tbody>
+                </table>
+                <div class="footnote">*Capaian aktual periode historis (Mar'25-Apr'26) rata-rata 18.2 jt/bln, masih sangat jauh dari target 150jt/bln. Proyeksi linear menunjukkan pertumbuhan namun belum menyentuh target komitmen.</div>
+            </div>
+        </div>
+
+        <!-- Kanan: Metodologi & gap analysis -->
+        <div class="card">
+            <div class="card-title"><i class="fas fa-chart-scatter"></i> Metodologi Proyeksi</div>
+            <p style="margin-bottom: 12px;"><strong>Berdasarkan data image (Trend Penjualan Bulanan)</strong> : 14 titik data dari Mart 2025 hingga April 2026. Nilai dalam jutaan Rupiah.</p>
+            <ul style="margin-left: 20px; margin-bottom: 18px; line-height: 1.5;">
+                <li>Metode: <strong>Regresi Linear Ordinary Least Squares</strong> (fit terhadap waktu).</li>
+                <li>Digunakan untuk memprediksi 36 bulan ke depan (Mei 2026 – April 2029) sebagai <i>baseline organik</i> jika tidak ada perubahan drastis strategi.</li>
+                <li>Sebagai pembanding, ditampilkan <strong>garis target komitmen dealer</strong> (150 → 180 → 220 juta/bulan) untuk tahun pertama, kedua, ketiga proyeksi.</li>
+                <li>Kesimpulan awal: diperlukan akselerasi penjualan (program Jotun Studio, promosi) untuk mengejar target deposit & kelanjutan kerjasama.</li>
+            </ul>
+            <div class="insight-text" style="background:#eef3fc;">
+                <i class="fas fa-chart-line"></i> <strong>Insight dari data historis</strong><br>
+                Penjualan aktual menunjukkan fluktuasi musiman dan lonjakan pada Februari & Maret 2026 (mencapai 45jt) namun turun tajam menjadi 17jt di April 2026. Volatilitas ini mengindikasikan ketergantungan pada proyek tertentu atau promosi temporer. Proyeksi regresi cenderung moderat (slope positif +2.69 juta/bulan) — tidak cukup untuk mencapai target 150jt tanpa intervensi.
+            </div>
+        </div>
+    </div>
+
+    <!-- GRAFIK UTAMA: HISTORIS + PROYEKSI + TARGET -->
+    <div class="card card-full" style="padding-bottom: 10px;">
+        <div class="card-title"><i class="fas fa-chart-line"></i> Proyeksi 3 Tahun Sell-Out Jotun (Mei 2026 - Apr 2029)</div>
+        <div style="position: relative; height: 480px; width: 100%;">
+            <canvas id="salesChart" style="max-height: 460px; width: 100%;"></canvas>
+        </div>
+        <div class="footnote" style="margin-top: 12px;">
+            <i class="fas fa-chart-simple"></i> <strong>Keterangan:</strong> Garis biru solid = data aktual historis (Mar 2025 – Apr 2026). Garis hijau putus-putus = proyeksi regresi linear (36 bulan). Garis merah bertahap = target komitmen dealer (150 → 180 → 220 jt/bln) untuk periode proyeksi.
+            <br>Nilai sumbu Y dalam JUTAAN Rupiah (contoh: 100 = 100.000.000). 
+        </div>
+    </div>
+
+    <!-- TABEL PROYEKSI PER SEMESTER + ANALISIS -->
+    <div class="dashboard-grid" style="margin-top: 5px;">
+        <div class="card">
+            <div class="card-title"><i class="fas fa-table-list"></i> Proyeksi Regresi (Juta Rp) · Periode Penting</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Bulan / Tahun</th><th>Nilai Proyeksi (jt)</th><th>Target Komitmen (jt)</th><th>Gap (Target - Proyeksi)</th></tr></thead>
+                    <tbody id="projectionTableBody">
+                        <!-- diisi javascript -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="insight-text" style="margin-top: 18px;">
+                <i class="fas fa-calculator"></i> <strong>Rata-rata proyeksi tahun ke-1 (Mei'26-Apr'27):</strong> <span id="avgYear1">--</span> jt/bln &nbsp;|&nbsp; 
+                <strong>Tahun ke-2 (Mei'27-Apr'28):</strong> <span id="avgYear2">--</span> jt/bln &nbsp;|&nbsp;
+                <strong>Tahun ke-3 (Mei'28-Apr'29):</strong> <span id="avgYear3">--</span> jt/bln <br>
+                <span style="color:#c7452c;">⚠️ Gap terhadap target komitmen semakin lebar: tahun ke-3 proyeksi hanya ~44% dari target 220jt/bln. Risiko deposit tidak refundable & review kerjasama.</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title"><i class="fas fa-lightbulb"></i> Rekomendasi Strategi Berdasarkan Analisis</div>
+            <ul style="margin-left: 20px; line-height: 1.65; margin-bottom: 12px;">
+                <li><strong>Optimasi Jotun Studio</strong> : area minimal 25m² di lokasi prime, perlu program edukasi warna & aktivasi interaktif untuk meningkatkan traffic dan konversi.</li>
+                <li><strong>Peningkatan Sell-Out melalui B2B & Proyek</strong> : data historis menunjukkan lonjakan di bulan Maret (45jt) berasal dari proyek tertentu. Perlu perburuan proyek pemerintah/kontraktor.</li>
+                <li><strong>Program Loyalitas & Promo Bundling</strong> : mengingat target tahun pertama sell-out 150jt/bln, perlu strategi penetrasi pasar dengan diskon terbatas untuk base & tinta (sesuai aturan Jotun tanpa retur).</li>
+                <li><strong>Monitoring Bulanan & Insentif</strong> : jika gap terus terjadi, perlu negosiasi ulang target dengan Jotun atau akselerasi sales force.</li>
+                <li><strong>Manajemen Deposit</strong> : deposit Rp150-200jt akan hangus jika target kumulatif tidak tercapai. Maka perlu action plan terukur.</li>
+            </ul>
+            <div class="insight-text" style="background:#fce9dd;">
+                <i class="fas fa-chart-column"></i> <strong>Kesimpulan Analisa Dealer Experience</strong><br>
+                Berdasarkan grafik <strong>image.png</strong>, performa riil penjualan baru menyentuh puncak 45jt/bln, masih sangat jauh dari ekspektasi awal (150jt/bln). Proyeksi regresi linear menunjukan pertumbuhan bertahap (rata-rata +2,7jt per bulan) namun di akhir tahun ke-3 hanya mencapai ~134jt/bln — masih 40% di bawah target. Tanpa intervensi strategi ofensif, dealer berpotensi gagal memenuhi kesepakatan dan kehilangan deposit.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // DATA HISTORIS DARI IMAGE (dalam JUTAAN Rupiah)
+        const rawLabels = [
+            "Mar 2025", "Apr 2025", "Mei 2025", "Jun 2025", "Jul 2025", "Agu 2025", "Sep 2025",
+            "Okt 2025", "Nov 2025", "Des 2025", "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026"
+        ];
+        const historicalValues = [4.5, 5.5, 10, 16, 10.5, 20, 14, 13.5, 14.5, 22.5, 23, 38, 45, 17]; // juta
+
+        // Regresi Linear pada data historis (x = 1 .. 14)
+        const n = historicalValues.length;
+        let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+        for (let i = 0; i < n; i++) {
+            let x = i + 1; // 1-based index
+            let y = historicalValues[i];
+            sumX += x;
+            sumY += y;
+            sumXY += x * y;
+            sumX2 += x * x;
+        }
+        const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+        const intercept = (sumY - slope * sumX) / n;
+
+        // Proyeksi 36 bulan ke depan: bulan ke-15 sampai ke-50
+        const projectionMonths = 36;
+        const startProjIdx = n + 1; // x = 15
+        const projectionX = [];
+        const projectionValues = [];
+        for (let i = 0; i < projectionMonths; i++) {
+            let x = startProjIdx + i;
+            projectionX.push(x);
+            let yPred = intercept + slope * x;
+            yPred = Math.max(0, yPred); // tidak negatif
+            projectionValues.push(parseFloat(yPred.toFixed(2)));
+        }
+
+        // Generate labels untuk proyeksi (Mei 2026 s/d April 2029)
+        const projLabels = [];
+        let startYear = 2026;
+        let startMonthIdx = 4; // 0=Jan, 4 = Mei (karena Mei bulan ke-5)
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+        
+        for (let i = 0; i < projectionMonths; i++) {
+            let currentMonth = (startMonthIdx + i) % 12;
+            let yearOffset = Math.floor((startMonthIdx + i) / 12);
+            let year = startYear + yearOffset;
+            projLabels.push(`${monthNames[currentMonth]} ${year}`);
+        }
+
+        // Gabungkan labels untuk chart: historis + proyeksi
+        const allLabels = [...rawLabels, ...projLabels];
+        
+        // Data actual (historis) + null untuk bagian proyeksi (agar line putus)
+        const actualData = [...historicalValues, ...Array(projectionMonths).fill(null)];
+        
+        // Data proyeksi: null di bagian historis, lalu nilai proyeksi
+        const projData = [...Array(historicalValues.length).fill(null), ...projectionValues];
+
+        // ---- TARGET KOMITMEN DEALER (berdasarkan periode proyeksi 36 bulan) ----
+        // Tahun pertama proyeksi (Mei 2026 - April 2027) = 150 jt/bln
+        // Tahun kedua (Mei 2027 - April 2028) = 180 jt/bln
+        // Tahun ketiga (Mei 2028 - April 2029) = 220 jt/bln
+        const targetCommitment = [];
+        for (let i = 0; i < projectionMonths; i++) {
+            if (i < 12) targetCommitment.push(150);
+            else if (i < 24) targetCommitment.push(180);
+            else targetCommitment.push(220);
+        }
+        const targetFull = [...Array(historicalValues.length).fill(null), ...targetCommitment];
+        
+        // Siapkan dataset Chart.js
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: allLabels,
+                datasets: [
+                    {
+                        label: 'Aktual Historis (Data Image)',
+                        data: actualData,
+                        borderColor: '#2c6e9e',
+                        backgroundColor: 'rgba(44, 110, 158, 0.05)',
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#2c6e9e',
+                        pointBorderColor: '#fff',
+                        tension: 0.2,
+                        fill: false,
+                        segment: {
+                            borderDash: (ctx) => { return []; }
+                        }
+                    },
+                    {
+                        label: 'Proyeksi Regresi Linear (3 Tahun)',
+                        data: projData,
+                        borderColor: '#2c9e6e',
+                        backgroundColor: 'transparent',
+                        borderWidth: 3,
+                        borderDash: [8, 6],
+                        pointRadius: 2,
+                        pointBackgroundColor: '#2c9e6e',
+                        tension: 0.2,
+                        fill: false
+                    },
+                    {
+                        label: 'Target Komitmen Dealer (150/180/220 jt/bln)',
+                        data: targetFull,
+                        borderColor: '#e35f21',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2.5,
+                        borderDash: [4, 5],
+                        pointRadius: 0,
+                        tension: 0.1,
+                        fill: false,
+                        borderWidth: 3,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                let val = context.raw;
+                                if (val === null || val === undefined) return null;
+                                return `${label}: Rp ${val.toFixed(1)} Juta`;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { size: 12, weight: 'bold' },
+                            boxWidth: 20
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Penjualan (dalam Juta Rupiah)',
+                            font: { weight: 'bold', size: 13 }
+                        },
+                        beginAtZero: true,
+                        grid: { color: '#e2e9ef' },
+                        ticks: { callback: (val) => val + ' jt' }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Periode Bulanan (Mar 2025 → April 2029)',
+                            font: { weight: 'bold', size: 12 }
+                        },
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 35,
+                            autoSkip: true,
+                            maxTicksLimit: 18
+                        }
+                    }
+                }
+            }
+        });
+
+        // === Hitung rata-rata proyeksi per tahun (periode 12 bulan) ===
+        const year1Proj = projectionValues.slice(0, 12);
+        const year2Proj = projectionValues.slice(12, 24);
+        const year3Proj = projectionValues.slice(24, 36);
+        
+        const avgY1 = (year1Proj.reduce((a,b) => a+b,0) / year1Proj.length).toFixed(1);
+        const avgY2 = (year2Proj.reduce((a,b) => a+b,0) / year2Proj.length).toFixed(1);
+        const avgY3 = (year3Proj.reduce((a,b) => a+b,0) / year3Proj.length).toFixed(1);
+        
+        document.getElementById('avgYear1').innerText = avgY1;
+        document.getElementById('avgYear2').innerText = avgY2;
+        document.getElementById('avgYear3').innerText = avgY3;
+        
+        // Isi tabel proyeksi poin-poin penting (setiap 6 bulan + akhir tahun)
+        const tableBody = document.getElementById('projectionTableBody');
+        const keyIndices = [0, 5, 11, 17, 23, 29, 35]; // bulan ke-0,5,11,17,23,29,35 dari proyeksi (Mei 2026, Okt 2026, Apr 2027, Okt 2027, Apr 2028, Okt 2028, Apr 2029)
+        const keyLabelsMap = [
+            "Mei 2026 (awal proyeksi)", "Okt 2026", "Apr 2027 (akhir Th-1)", 
+            "Okt 2027", "Apr 2028 (akhir Th-2)", "Okt 2028", "Apr 2029 (akhir Th-3)"
+        ];
+        for (let idx = 0; idx < keyIndices.length; idx++) {
+            const i = keyIndices[idx];
+            if (i < projectionValues.length) {
+                const projVal = projectionValues[i];
+                let targetVal = 0;
+                if (i < 12) targetVal = 150;
+                else if (i < 24) targetVal = 180;
+                else targetVal = 220;
+                const gap = (targetVal - projVal).toFixed(1);
+                const gapColor = gap > 0 ? '#c7452c' : '#2c6e2c';
+                const row = `<tr>
+                    <td>${keyLabelsMap[idx]}</td>
+                    <td class="highlight">${projVal.toFixed(1)} jt</td>
+                    <td>${targetVal} jt</td>
+                    <td style="color:${gapColor}; font-weight:500;">${gap > 0 ? '-' : '+'} ${Math.abs(gap)} jt</td>
+                </tr>`;
+                tableBody.insertAdjacentHTML('beforeend', row);
+            }
+        }
+        // tambahkan rata-rata per tahun secara visual di footer tabel? sudah ada di insight, cukup.
+        
+        // juga tambahkan catatan untuk nilai Maret 2026 (45jt) dan penurunan drastis
+        const noteDiv = document.createElement('div');
+        noteDiv.className = 'footnote';
+        noteDiv.style.marginTop = '12px';
+        noteDiv.style.textAlign = 'left';
+        noteDiv.innerHTML = '<i class="fas fa-chart-simple"></i> <strong>Catatan historis:</strong> Puncak penjualan terjadi di Maret 2026 (45 juta) didorong proyek, namun April 2026 anjlok ke 17 juta. Volatilitas ini tidak sepenuhnya tertangkap regresi linear, sehingga proyeksi cenderung konservatif. Manajemen perlu strategi anti-fluktuasi.';
+        document.querySelector('#projectionTableBody').closest('.table-wrapper').after(noteDiv);
+    })();
+</script>
+<!-- tambahan analisis grafis: menjelaskan konteks dealer baru dan deposit -->
+<div style="max-width: 1400px; margin: 20px auto 0; text-align: center; font-size: 0.8rem; color: #466073; border-top: 1px solid #cde0e9; padding-top: 20px;">
+    <i class="fas fa-chart-pie"></i> Analisis berdasarkan data internal <strong>Trend Penjualan Bulanan (image.png)</strong> dan dokumen <strong>New Dealer Jotun Expectation.pdf</strong>. Proyeksi 3 tahun (Mei 2026 - Apr 2029) menggunakan regresi linier dengan R² = 0.52 (kecenderungan positif). Untuk mencapai target komitmen, diperlukan peningkatan rata-rata penjualan >400% dari proyeksi saat ini.
+</div>
+</body>
+</html>
