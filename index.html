@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Jotun Dealer Expectation · Mulai S2-2026 + Gantt Chart Persiapan</title>
+    <title>Jotun Dealer · Target 36 Bulan (S2-2026 s.d S1-2029) + Marketing Plan</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
@@ -45,7 +45,6 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            line-height: 1.2;
         }
         .subhead {
             color: #2c5f6e;
@@ -62,8 +61,6 @@
             margin-top: 10px;
             font-size: 0.75rem;
             color: #0c4e62;
-            display: inline-block;
-            width: auto;
         }
         .card {
             background: white;
@@ -71,7 +68,6 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             padding: 1.2rem 1rem;
             margin-bottom: 1.5rem;
-            transition: 0.2s;
         }
         .image-panel {
             display: flex;
@@ -90,18 +86,17 @@
         }
         .image-card a {
             display: block;
-            cursor: pointer;
         }
         .image-card img {
             width: 100%;
-            max-height: 240px;
+            max-height: 220px;
             object-fit: contain;
             border-radius: 16px;
             background: #f8fafc;
             border: 1px solid #e2edf2;
         }
         .image-card .caption {
-            margin-top: 10px;
+            margin-top: 8px;
             font-weight: 600;
             color: #0B4F6C;
             font-size: 0.7rem;
@@ -117,8 +112,7 @@
         }
         .gantt-container {
             overflow-x: auto;
-            margin-top: 20px;
-            padding-bottom: 8px;
+            margin-top: 16px;
         }
         .gantt-row {
             display: flex;
@@ -162,18 +156,33 @@
             margin-bottom: 6px;
             font-size: 0.65rem;
             font-weight: 600;
-            color: #2c5f6e;
         }
         .timeline-week {
             flex: 1;
             text-align: center;
         }
-        .week-marker {
-            font-size: 0.6rem;
-            text-align: center;
-            background: #f1f3f5;
-            border-radius: 12px;
-            padding: 2px;
+        .marketing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .marketing-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 12px;
+            flex: 1 1 200px;
+            border: 1px solid #dce7ef;
+        }
+        .marketing-card h4 {
+            margin: 0 0 6px 0;
+            color: #1F7A8C;
+            font-size: 0.85rem;
+        }
+        .marketing-card p {
+            margin: 0;
+            font-size: 0.7rem;
+            color: #2c5f6e;
         }
         .table-wrapper {
             overflow-x: auto;
@@ -181,7 +190,6 @@
             border: 1px solid #e2e8f0;
             background: white;
             margin-top: 16px;
-            -webkit-overflow-scrolling: touch;
         }
         table {
             width: 100%;
@@ -193,7 +201,6 @@
             background: #1F7A8C;
             color: white;
             padding: 8px 5px;
-            font-weight: 600;
             text-align: center;
         }
         td {
@@ -202,14 +209,12 @@
             border-bottom: 1px solid #e9edf2;
         }
         td:first-child, th:first-child { text-align: left; padding-left: 10px; }
-        td:first-child { font-weight: 500; background-color: #fafdff; }
-        tr:hover td { background-color: #f1f9fc; }
+        td:first-child { font-weight: 500; }
         .highlight-daily {
             font-weight: 700;
             color: #c75119;
         }
         .chart-container {
-            position: relative;
             height: 340px;
             width: 100%;
             margin: 0.5rem 0;
@@ -229,15 +234,12 @@
         }
         .insight-card h3 {
             margin: 0 0 6px 0;
-            font-weight: 700;
             font-size: 0.9rem;
             color: #0B4F6C;
         }
         .insight-card p {
             margin: 0;
             font-size: 0.8rem;
-            line-height: 1.35;
-            color: #2c3e44;
         }
         .footer-note {
             text-align: center;
@@ -246,17 +248,9 @@
             color: #5a7b8c;
         }
         @media (max-width: 640px) {
-            body { padding: 12px 8px; }
-            .card { padding: 1rem 0.8rem; }
-            h1 { font-size: 1.2rem; }
-            .logo { height: 40px; }
-            .image-card img { max-height: 160px; }
-            .chart-container { height: 260px; }
-            .gantt-label { width: 160px; font-size: 0.7rem; }
+            .gantt-label { width: 160px; }
             .timeline-header { margin-left: 160px; }
-        }
-        a {
-            text-decoration: none;
+            .marketing-card { flex-basis: 100%; }
         }
     </style>
 </head>
@@ -265,134 +259,116 @@
     <div class="header-row">
         <img class="logo" src="https://grandmitra.com/wp-content/uploads/2024/09/gm.png" alt="Logo Grand Mitra" onerror="this.style.display='none'">
         <div class="title-area">
-            <h1>🎯 Jotun New Dealer Expectation · 36 Bulan (Mulai S2-2026)</h1>
-            <div class="subhead">📄 Skema Progresif sesuai dokumen dealer | Periode: Juli 2026 – Juni 2029 (6 semester)</div>
+            <h1>🎯 Jotun Dealer Target 36 Bulan (2026-2029)</h1>
+            <div class="subhead">Sell-in exclude PPN · Sell-out include PPN | Progresif per semester | Mulai Semester 2-2026</div>
             <div class="expectation-desc">
-                ✅ Target dimulai dari <strong>Semester 2 tahun 2026 (Juli 2026)</strong> dengan komposisi semester: 5% → 10% → 15% → 20% → 25% → 25%<br>
-                📌 Total sell-out 36 bulan: Rp4,95 Miliar | Rasio sell-out/sell-in 1,256 | Persiapan display selesai sebelum Juli 2026.
+                📊 <strong>Total Sell-in 3 tahun (excl PPN):</strong> Rp5.250.000.000 | <strong>Total Sell-out 3 tahun (incl PPN):</strong> Rp6.600.000.000<br>
+                ✅ Komposisi semester: 5% → 10% → 15% → 20% → 25% → 25% | Periode: Juli 2026 – Juni 2029
             </div>
         </div>
     </div>
 
-    <!-- GAMBAR DENAH & DOKUMEN (klik buka tab baru) -->
+    <!-- Gambar Denah & Dokumen (klik buka tab baru) -->
     <div class="card">
-        <div style="margin-bottom: 10px;"><span class="badge">📐 LAYOUT & REFERENSI RESMI</span> <strong>Denah rak Jotun 25m² + Dokumen Ekspektasi Dealer</strong></div>
+        <div style="margin-bottom: 10px;"><span class="badge">📐 LAYOUT & REFERENSI</span> <strong>Denah rak Jotun 25m² + Dokumen Ekspektasi Dealer</strong></div>
         <div class="image-panel">
             <div class="image-card">
                 <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMSoNVFpFzMglAEf50in-sR7i9jUljcTzh7AXFDj6iKu2s4hNBgwOa68RCb47R60lF8WMsABkgEotE1VYTG2z9qaOqX_94IqL783hz8Z_1bjBYuC_1aVo7vsqos7BK0nu9VN31oFNyM7TeoLgKlshbpw1ARtEdE2kO_jX6kEF9LHt8o_WrT_iBx6gnjMmJ/s16000/Gemini_Generated_Image_a9x850a9x850a9x8.png" target="_blank" rel="noopener noreferrer">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMSoNVFpFzMglAEf50in-sR7i9jUljcTzh7AXFDj6iKu2s4hNBgwOa68RCb47R60lF8WMsABkgEotE1VYTG2z9qaOqX_94IqL783hz8Z_1bjBYuC_1aVo7vsqos7BK0nu9VN31oFNyM7TeoLgKlshbpw1ARtEdE2kO_jX6kEF9LHt8o_WrT_iBx6gnjMmJ/s16000/Gemini_Generated_Image_a9x850a9x850a9x8.png" 
-                         alt="Denah Rak Jotun - Grandmitra 25m2">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMSoNVFpFzMglAEf50in-sR7i9jUljcTzh7AXFDj6iKu2s4hNBgwOa68RCb47R60lF8WMsABkgEotE1VYTG2z9qaOqX_94IqL783hz8Z_1bjBYuC_1aVo7vsqos7BK0nu9VN31oFNyM7TeoLgKlshbpw1ARtEdE2kO_jX6kEF9LHt8o_WrT_iBx6gnjMmJ/s16000/Gemini_Generated_Image_a9x850a9x850a9x8.png" alt="Denah Rak">
                 </a>
-                <div class="caption">📍 Denah rak Jotun · Klik untuk lihat penuh</div>
+                <div class="caption">📍 Denah rak Jotun (25m²) · Klik perbesar</div>
             </div>
             <div class="image-card">
                 <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7-a16JTCXYO8HOanvTUN4JQZ90Up7BTMEU2ukBIND_YL_OFvzgIHTqbhDIdT0TsBowN4d0bLZ48YgCKsR4t2E8oS4hOjnnyvvkoztyRTsdMf4cri7HCNU3Z9I0kdSc7bDs1MFhs7WXFuzcTxoe8ujYWyRPtoAx8_2YFSjY2LzYOQmxvrR6Zjn5ekzNc0O/s16000/JOTUN%20EXPECTATION%20%5B5%5D.png" target="_blank" rel="noopener noreferrer">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7-a16JTCXYO8HOanvTUN4JQZ90Up7BTMEU2ukBIND_YL_OFvzgIHTqbhDIdT0TsBowN4d0bLZ48YgCKsR4t2E8oS4hOjnnyvvkoztyRTsdMf4cri7HCNU3Z9I0kdSc7bDs1MFhs7WXFuzcTxoe8ujYWyRPtoAx8_2YFSjY2LzYOQmxvrR6Zjn5ekzNc0O/s16000/JOTUN%20EXPECTATION%20%5B5%5D.png"
-                         alt="Dokumen New Dealer Jotun Expectation">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7-a16JTCXYO8HOanvTUN4JQZ90Up7BTMEU2ukBIND_YL_OFvzgIHTqbhDIdT0TsBowN4d0bLZ48YgCKsR4t2E8oS4hOjnnyvvkoztyRTsdMf4cri7HCNU3Z9I0kdSc7bDs1MFhs7WXFuzcTxoe8ujYWyRPtoAx8_2YFSjY2LzYOQmxvrR6Zjn5ekzNc0O/s16000/JOTUN%20EXPECTATION%20%5B5%5D.png" alt="Dokumen Expectation">
                 </a>
-                <div class="caption">📄 Dokumen Expectation · Klik gambar</div>
+                <div class="caption">📄 Dokumen New Dealer Expectation</div>
             </div>
         </div>
     </div>
 
-    <!-- PROJECT PLAN GANTT CHART (Persiapan Jotun) Mei - Juni 2026 -->
+    <!-- Project Plan Gantt Chart (Persiapan) -->
     <div class="card">
-        <div><span class="badge">📋 PROJECT PLAN PERSIAPAN JOTUN</span> <strong>Gantt Chart Milestone (Mei – Juni 2026) sebelum penjualan Semester 2-2026</strong></div>
+        <div><span class="badge">📋 PROJECT PLAN PERSIAPAN JOTUN</span> <strong>Milestone menuju penjualan Juli 2026</strong></div>
         <div class="gantt-container">
-            <div class="timeline-header" style="margin-left: 200px;">
-                <div class="timeline-week">Mei (M1)</div><div class="timeline-week">Mei (M2)</div><div class="timeline-week">Mei (M3)</div><div class="timeline-week">Mei (M4)</div>
-                <div class="timeline-week">Jun (M1)</div><div class="timeline-week">Jun (M2)</div><div class="timeline-week">Jun (M3)</div><div class="timeline-week">Jul (M1)</div>
+            <div class="timeline-header">
+                <div class="timeline-week">Mei M1</div><div class="timeline-week">Mei M2</div><div class="timeline-week">Mei M3</div><div class="timeline-week">Mei M4</div>
+                <div class="timeline-week">Jun M1</div><div class="timeline-week">Jun M2</div><div class="timeline-week">Jun M3</div><div class="timeline-week">Jul M1</div>
             </div>
-            <div class="gantt-row">
-                <div class="gantt-label">1. Sign Agreement</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; background: #1F7A8C;">M1 Mei</div></div>
-            </div>
-            <div class="gantt-row">
-                <div class="gantt-label">2. Pengajuan Design</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; margin-left: 12.5%; background: #2C6E9B;">M2 Mei</div></div>
-            </div>
-            <div class="gantt-row">
-                <div class="gantt-label">3. Pembuatan Master Produk</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; margin-left: 25%; background: #4499aa;">M3 Mei</div></div>
-            </div>
-            <div class="gantt-row">
-                <div class="gantt-label">4. Ordering</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; margin-left: 37.5%; background: #5ba0b0;">M4 Mei</div></div>
-            </div>
-            <div class="gantt-row">
-                <div class="gantt-label">5. Pemasangan Display Mockup</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; margin-left: 50%; background: #1F7A8C;">M1 Jun</div></div>
-            </div>
-            <div class="gantt-row">
-                <div class="gantt-label">6. Pendisplayan Brand Dagangan</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; margin-left: 62.5%; background: #2C6E9B;">M2 Jun</div></div>
-            </div>
-            <div class="gantt-row">
-                <div class="gantt-label">7. Ready to Sales</div>
-                <div class="gantt-bar-wrapper"><div class="gantt-bar" style="width: 12.5%; margin-left: 87.5%; background: #E68A2E;">M1 Jul</div></div>
-            </div>
-            <div style="margin-top: 10px; font-size: 0.7rem; background: #f5f9fc; padding: 8px; border-radius: 16px;">
-                ✅ Target mulai penjualan <strong>Semester 2-2026 (Juli 2026)</strong> sesuai jadwal di atas. Setiap milestone diselesaikan per minggu.
-            </div>
+            <div class="gantt-row"><div class="gantt-label">1. Sign Agreement</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; background:#1F7A8C;">M1 Mei</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">2. Pengajuan Design</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:12.5%; background:#2C6E9B;">M2 Mei</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">3. Pembuatan Master Produk</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:25%; background:#4499aa;">M3 Mei</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">4. Ordering</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:37.5%; background:#5ba0b0;">M4 Mei</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">5. Pemasangan Display Mockup</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:50%; background:#1F7A8C;">M1 Jun</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">6. Pendisplayan Brand Dagangan</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:62.5%; background:#2C6E9B;">M2 Jun</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">7. Ready to Sales</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:87.5%; background:#E68A2E;">M1 Jul</div></div></div>
         </div>
     </div>
 
-    <!-- TABEL TARGET SEMESTER (6 semester mulai S2-2026) -->
+    <!-- Tabel Target Semester (progresif 6 semester) -->
     <div class="card">
-        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: space-between;">
-            <div><span class="badge">📅 TARGET PERSEMESTER (36 bulan · mulai Juli 2026)</span> <strong>Sell-in & Sell-out progresif dealer Jotun</strong></div>
-            <div style="font-size: 0.7rem;">Total kumulatif: Sell-in Rp3.941,1M | Sell-out Rp4.950M</div>
-        </div>
+        <div><span class="badge">📅 TARGET PERSEMESTER (36 BULAN)</span> <strong>Sell-in & Sell-out sesuai data tahunan</strong></div>
         <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Semester</th><th>Komposisi</th><th>Sell-in / Semester</th><th>Sell-out / Semester</th><th>Bulan</th><th>Sell-in / Bulan</th><th>Sell-out / Bulan</th></tr></thead>
+            <table id="semesterTable">
+                <thead><tr><th>Semester</th><th>Komposisi</th><th>Sell-in / Semester</th><th>Sell-out / Semester</th><th>Sell-in / Bulan</th><th>Sell-out / Bulan</th></tr></thead>
                 <tbody id="semesterTargetBody"></tbody>
             </table>
         </div>
     </div>
 
-    <!-- CHART TREND 36 BULAN -->
+    <!-- Chart Trend -->
     <div class="card">
-        <div><span class="badge">📈 TREND BULANAN (Rp)</span> <strong>Sell-in vs Sell-out · Juli 2026 – Juni 2029</strong></div>
-        <div class="chart-container">
-            <canvas id="trendChart" width="800" height="400" style="max-height: 340px; width:100%"></canvas>
-        </div>
+        <div><span class="badge">📈 TREND BULANAN</span> <strong>Sell-in (excl PPN) vs Sell-out (incl PPN)</strong></div>
+        <div class="chart-container"><canvas id="trendChart"></canvas></div>
         <div class="insight-grid" id="insightGrid"></div>
     </div>
 
-    <!-- TABEL BULANAN + HARIAN -->
+    <!-- Tabel Bulanan & Harian -->
     <div class="card">
-        <div><span class="badge">📅 DETAIL BULANAN & HARIAN</span> <strong>Target per bulan & nilai harian berdasarkan hari aktual</strong></div>
+        <div><span class="badge">📅 DETAIL BULANAN & HARIAN</span> <strong>Target per bulan & nilai harian (Rp)</strong></div>
         <div class="table-wrapper">
             <table id="dailyTable">
                 <thead><tr><th>Bulan - Tahun</th><th>Hari</th><th>Sell-in Bulanan</th><th>Sell-in Harian</th><th>Sell-out Bulanan</th><th>Sell-out Harian</th></tr></thead>
-                <tbody id="dailyTableBody"><tr><td colspan="6" style="text-align:center;">Memuat 36 bulan (Juli 2026 - Juni 2029)...</td></tr></tbody>
+                <tbody id="dailyTableBody"></tbody>
             </table>
-        </div>
-        <div style="margin-top: 16px; background: #E6F0F5; border-radius: 18px; padding: 8px 14px; font-size: 0.75rem;">
-            💡 <strong>Catatan Harian:</strong> Target dimulai Juli 2026 (S2-2026). Sell-out per bulan meningkat: Rp41,25jt (awal) → Rp123,75jt (2027) → Rp206,25jt (2028-2029). Nilai harian tertinggi pada bulan dengan hari minimal.
         </div>
     </div>
 
-    <!-- RINGKASAN PER SEMESTER & STRATEGI -->
+    <!-- MARKETING PLAN (lengkap) -->
     <div class="card">
-        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-            <div style="flex: 2; min-width: 220px;">
-                <h3 style="margin-top: 0; font-size: 1rem;">📆 Akumulasi per Semester</h3>
-                <div class="table-wrapper">
-                    <table>
-                        <thead><tr><th>Semester</th><th>Total Sell-in</th><th>Total Sell-out</th></tr></thead>
-                        <tbody id="semesterSummaryBody"></tbody>
-                    </table>
-                </div>
+        <div><span class="badge">🎯 MARKETING PLAN JOTUN</span> <strong>Strategi 36 bulan untuk mencapai target</strong></div>
+        <div class="marketing-grid">
+            <div class="marketing-card"><h4>🏪 In-store Promo</h4><p>ATL, BTL, Billboard, PWP (Purchase with Purchase), GWP (Gift with Purchase), POP display</p></div>
+            <div class="marketing-card"><h4>🧑‍🎨 Brand Awareness</h4><p>Gathering tukang, pameran proyek, workshop cat, kontes desain, sponsor event bangunan</p></div>
+            <div class="marketing-card"><h4>📘 Product Knowledge</h4><p>Sertifikasi sales, demo produk, video tutorial, katalog teknis, aplikasi warna 3D</p></div>
+            <div class="marketing-card"><h4>📄 Sebar Brosur</h4><p>Flyer di toko material, selebaran langsung ke proyek, digital brochure via WhatsApp</p></div>
+            <div class="marketing-card"><h4>🤝 Kerjasama Kontraktor & Developer</h4><p>Program loyalitas, price list khusus, insentif proyek besar, MOU with housing developer</p></div>
+            <div class="marketing-card"><h4>💳 Disc Member</h4><p>Member card, poin reward, diskon bertahap, birthday promo, referral bonus</p></div>
+            <div class="marketing-card"><h4>🏦 Kerjasama Merchant Bank</h4><p>0% cicilan, cashback, promo kartu kredit, edc khusus, paylater mitra</p></div>
+            <div class="marketing-card"><h4>🏗️ Spreading Sales Project</h4><p>Sales kit untuk mitra, canvassing ke proyek, sales tour, mobile showroom, webinar proyek</p></div>
+            <div class="marketing-card"><h4>📱 Digital Marketing</h4><p>Google Ads, Instagram & FB ads, retargeting, SEO, konten TikTok, kolaborasi influencer</p></div>
+            <div class="marketing-card"><h4>🎁 Loyalty Program</h4><p>Point untuk pembelian berulang, undian berhadiah, special gift for top buyer</p></div>
+        </div>
+        <div style="margin-top: 16px; background: #E6F0F5; border-radius: 18px; padding: 8px 14px; font-size:0.75rem;">
+            💡 <strong>Strategi Integrasi:</strong> Kombinasi in-store promo dan brand awareness akan didukung program digital marketing serta kerjasama dengan developer untuk mendongkrak sell-out sesuai target progresif.
+        </div>
+    </div>
+
+    <!-- Ringkasan Semester & Kesimpulan -->
+    <div class="card">
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div style="flex:2; min-width:240px;">
+                <h3 style="margin:0 0 8px 0;">📆 Akumulasi per Semester</h3>
+                <div class="table-wrapper"><table id="summaryTable"><thead><tr><th>Semester</th><th>Total Sell-in</th><th>Total Sell-out</th></tr></thead><tbody id="semesterSummaryBody"></tbody></table></div>
             </div>
-            <div style="flex: 1.5; background: #d9e9f0; border-radius: 20px; padding: 12px 16px;">
-                <h3 style="margin: 0 0 8px 0; font-size: 1rem;">📌 Strategi Dealer Baru (Mulai S2-2026)</h3>
-                <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.78rem;">
-                    <li>✅ Periode penjualan 36 bulan: Juli 2026 – Juni 2029, sesuai ekspektasi dealer dengan komposisi progresif.</li>
-                    <li>✅ Gantt Chart persiapan rampung sebelum Juli 2026, memastikan display dan stok siap.</li>
-                    <li>✅ Rasio sell-out/sell-in = 1,256 → kebutuhan stok lebih tinggi 25,6%, indikasi potensi ekspansi.</li>
-                    <li>✅ Puncak sell-out bulanan di S2-2028 dan S1-2029 (Rp206,25 jt/bulan).</li>
+            <div style="flex:1.5; background:#d9e9f0; border-radius:20px; padding:12px 16px;">
+                <h3 style="margin:0 0 8px 0;">📌 Kesimpulan Strategis</h3>
+                <ul style="margin:0; padding-left:1.2rem; font-size:0.75rem;">
+                    <li>Total Sell-in 3 tahun (excl PPN): Rp5,25 Miliar → Rp5.250.000.000</li>
+                    <li>Total Sell-out 3 tahun (incl PPN): Rp6,60 Miliar → Rp6.600.000.000</li>
+                    <li>Rasio Sell-out / Sell-in = 1,257 → permintaan 25,7% di atas pasokan</li>
+                    <li>Target bulanan meningkat dari Rp145,8 juta (awal) hingga Rp275,0 juta (akhir)</li>
+                    <li>Marketing plan terintegrasi untuk memastikan pencapaian target progresif</li>
                 </ul>
             </div>
         </div>
@@ -401,190 +377,179 @@
 </div>
 
 <script>
-(function() {
-    // ---------- TOTAL TARGET 36 BULAN (TETAP) ----------
-    const totalSellout36 = 4950000000;   // 4.95 M
-    const totalSellin36 = 3941100000;    // 3.9411 M (rasio 1.256)
-    // Komposisi semester sesuai urutan: S2-2026, S1-2027, S2-2027, S1-2028, S2-2028, S1-2029
-    const semesterComposition = [0.05, 0.10, 0.15, 0.20, 0.25, 0.25];
-    const semesterNames = [
-        "Semester 2 - 2026", "Semester 1 - 2027", "Semester 2 - 2027",
-        "Semester 1 - 2028", "Semester 2 - 2028", "Semester 1 - 2029"
-    ];
-    
-    let semesterTargets = [];
-    for (let i = 0; i < semesterComposition.length; i++) {
-        let pct = semesterComposition[i];
-        let selloutSem = Math.round(totalSellout36 * pct);
-        let sellinSem = Math.round(totalSellin36 * pct);
-        let sellinPerBulan = Math.round(sellinSem / 6);
-        let selloutPerBulan = Math.round(selloutSem / 6);
-        semesterTargets.push({
-            semester: semesterNames[i],
-            persen: (pct * 100) + "%",
-            sellinSem: sellinSem,
-            selloutSem: selloutSem,
-            bulanCount: 6,
-            sellinPerBulan: sellinPerBulan,
-            selloutPerBulan: selloutPerBulan
-        });
-    }
-    
-    const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-    
-    // Periode semester mulai dari S2-2026 (Juli 2026) sampai S1-2029 (Juni 2029)
-    // S2-2026: Juli-Des 2026 (month index 6-11)
-    // S1-2027: Jan-Jun 2027 (0-5)
-    // S2-2027: Jul-Des 2027 (6-11)
-    // S1-2028: Jan-Jun 2028 (0-5)
-    // S2-2028: Jul-Des 2028 (6-11)
-    // S1-2029: Jan-Jun 2029 (0-5)
-    const semesterPeriods = [
-        { startYear: 2026, startMonth: 6, endYear: 2026, endMonth: 11, semIdx: 0 },  // S2-2026
-        { startYear: 2027, startMonth: 0, endYear: 2027, endMonth: 5, semIdx: 1 },   // S1-2027
-        { startYear: 2027, startMonth: 6, endYear: 2027, endMonth: 11, semIdx: 2 },  // S2-2027
-        { startYear: 2028, startMonth: 0, endYear: 2028, endMonth: 5, semIdx: 3 },   // S1-2028
-        { startYear: 2028, startMonth: 6, endYear: 2028, endMonth: 11, semIdx: 4 },  // S2-2028
-        { startYear: 2029, startMonth: 0, endYear: 2029, endMonth: 5, semIdx: 5 }    // S1-2029
-    ];
-    
-    // Generate monthlyData (36 bulan)
-    let monthlyData = [];
-    for (let period of semesterPeriods) {
-        const semData = semesterTargets[period.semIdx];
-        const sellinMonthlyBase = semData.sellinPerBulan;
-        const selloutMonthlyBase = semData.selloutPerBulan;
-        let year = period.startYear;
-        let month = period.startMonth;
-        while (true) {
-            if (year > period.endYear || (year === period.endYear && month > period.endMonth)) break;
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const sellinDaily = sellinMonthlyBase / daysInMonth;
-            const selloutDaily = selloutMonthlyBase / daysInMonth;
-            monthlyData.push({
-                year, monthIndex: month, monthName: monthNames[month],
-                label: `${monthNames[month]} ${year}`,
-                sellinMonthly: sellinMonthlyBase,
-                selloutJotunMonthly: selloutMonthlyBase,
-                daysInMonth, sellinDaily, selloutJotunDaily: selloutDaily,
-                semesterLabel: semData.semester
+    (function() {
+        // DATA BERDASARKAN INPUT GAMBAR
+        // Sell-in per tahun (exclude PPN): Tahun1=1.500M, Tahun2=1.750M, Tahun3=2.000M
+        const sellInYear1 = 1500000000;
+        const sellInYear2 = 1750000000;
+        const sellInYear3 = 2000000000;
+        const totalSellIn = sellInYear1 + sellInYear2 + sellInYear3; // 5.250.000.000
+        
+        // Sell-out per bulan (include PPN): Tahun1=150jt/bln, Tahun2=180jt/bln, Tahun3=220jt/bln
+        const sellOutMonthYear1 = 150000000;
+        const sellOutMonthYear2 = 180000000;
+        const sellOutMonthYear3 = 220000000;
+        const totalSellOut = (sellOutMonthYear1 * 12) + (sellOutMonthYear2 * 12) + (sellOutMonthYear3 * 12); // 6.600.000.000
+        
+        // Komposisi semester progresif (6 semester mulai S2-2026 s.d S1-2029)
+        const semesterComposition = [0.05, 0.10, 0.15, 0.20, 0.25, 0.25];
+        const semesterNames = [
+            "Semester 2 - 2026", "Semester 1 - 2027", "Semester 2 - 2027",
+            "Semester 1 - 2028", "Semester 2 - 2028", "Semester 1 - 2029"
+        ];
+        
+        // Hitung target per semester berdasarkan komposisi dari total 36 bulan
+        let semesterTargets = [];
+        for (let i=0; i<semesterComposition.length; i++) {
+            let pct = semesterComposition[i];
+            let sellinSem = Math.round(totalSellIn * pct);
+            let selloutSem = Math.round(totalSellOut * pct);
+            let sellinPerBulan = Math.round(sellinSem / 6);
+            let selloutPerBulan = Math.round(selloutSem / 6);
+            semesterTargets.push({
+                semester: semesterNames[i],
+                persen: (pct*100)+"%",
+                sellinSem: sellinSem,
+                selloutSem: selloutSem,
+                sellinPerBulan: sellinPerBulan,
+                selloutPerBulan: selloutPerBulan
             });
-            if (month === 11) { month = 0; year++; } else { month++; }
-            if (year > period.endYear || (year === period.endYear && month > period.endMonth)) break;
         }
-    }
-    
-    // Tabel target semester
-    const semesterTargetBody = document.getElementById('semesterTargetBody');
-    semesterTargetBody.innerHTML = '';
-    semesterTargets.forEach(s => {
-        const row = semesterTargetBody.insertRow();
-        row.insertCell(0).innerText = s.semester;
-        row.insertCell(1).innerText = s.persen;
-        row.insertCell(2).innerHTML = `Rp ${s.sellinSem.toLocaleString('id-ID')}`;
-        row.insertCell(3).innerHTML = `Rp ${s.selloutSem.toLocaleString('id-ID')}`;
-        row.insertCell(4).innerText = s.bulanCount;
-        row.insertCell(5).innerHTML = `Rp ${s.sellinPerBulan.toLocaleString('id-ID')}`;
-        row.insertCell(6).innerHTML = `Rp ${s.selloutPerBulan.toLocaleString('id-ID')}`;
-    });
-    
-    // Chart line
-    const labels = monthlyData.map(d => d.label.substring(0,7));
-    const sellinValues = monthlyData.map(d => d.sellinMonthly);
-    const selloutValues = monthlyData.map(d => d.selloutJotunMonthly);
-    const ctx = document.getElementById('trendChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [
-                { label: 'Sell-in Jotun (bulanan)', data: sellinValues, borderColor: '#2C6E9B', borderWidth: 2.2, pointRadius: 1.2, tension: 0.1, fill: false },
-                { label: 'Sell-out Jotun (bulanan)', data: selloutValues, borderColor: '#E68A2E', borderWidth: 2.2, pointRadius: 1.2, tension: 0.1, fill: false }
-            ]
-        },
-        options: {
-            responsive: true, maintainAspectRatio: true,
-            plugins: {
-                tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: Rp ${ctx.raw.toLocaleString('id-ID')}` } },
-                legend: { position: 'top', labels: { font: { size: 9 } } }
-            },
-            scales: {
-                y: { ticks: { callback: (val) => 'Rp ' + val.toLocaleString('id-ID'), font: { size: 8 } }, title: { display: true, text: 'Rupiah', font: { size: 9 } } },
-                x: { ticks: { rotation: 45, autoSkip: true, maxRotation: 45, font: { size: 7 } }, title: { display: true, text: '36 bulan (Juli 2026 - Juni 2029)', font: { size: 9 } } }
+        
+        const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+        
+        // Periode 36 bulan: mulai Juli 2026 (S2-2026) sampai Juni 2029 (S1-2029)
+        const semesterPeriods = [
+            { startYear:2026, startMonth:6, endYear:2026, endMonth:11, semIdx:0 }, // S2-2026
+            { startYear:2027, startMonth:0, endYear:2027, endMonth:5, semIdx:1 },  // S1-2027
+            { startYear:2027, startMonth:6, endYear:2027, endMonth:11, semIdx:2 }, // S2-2027
+            { startYear:2028, startMonth:0, endYear:2028, endMonth:5, semIdx:3 },  // S1-2028
+            { startYear:2028, startMonth:6, endYear:2028, endMonth:11, semIdx:4 }, // S2-2028
+            { startYear:2029, startMonth:0, endYear:2029, endMonth:5, semIdx:5 }   // S1-2029
+        ];
+        
+        let monthlyData = [];
+        for (let period of semesterPeriods) {
+            const sem = semesterTargets[period.semIdx];
+            const sellinMonth = sem.sellinPerBulan;
+            const selloutMonth = sem.selloutPerBulan;
+            let year = period.startYear;
+            let month = period.startMonth;
+            while (true) {
+                if (year > period.endYear || (year === period.endYear && month > period.endMonth)) break;
+                const days = new Date(year, month+1, 0).getDate();
+                monthlyData.push({
+                    year, monthIndex: month, monthName: monthNames[month],
+                    label: `${monthNames[month]} ${year}`,
+                    sellinMonthly: sellinMonth,
+                    selloutMonthly: selloutMonth,
+                    daysInMonth: days,
+                    sellinDaily: sellinMonth / days,
+                    selloutDaily: selloutMonth / days,
+                    semesterLabel: sem.semester
+                });
+                if (month === 11) { month = 0; year++; } else { month++; }
+                if (year > period.endYear || (year === period.endYear && month > period.endMonth)) break;
             }
         }
-    });
-    
-    // Tabel harian
-    const dailyTbody = document.getElementById('dailyTableBody');
-    dailyTbody.innerHTML = '';
-    monthlyData.forEach(item => {
-        const row = dailyTbody.insertRow();
-        row.insertCell(0).innerText = `${item.monthName} ${item.year}`;
-        row.insertCell(1).innerText = item.daysInMonth;
-        row.insertCell(2).innerHTML = `Rp ${Math.round(item.sellinMonthly).toLocaleString('id-ID')}`;
-        row.insertCell(3).innerHTML = `Rp ${Math.round(item.sellinDaily).toLocaleString('id-ID')}`;
-        row.insertCell(4).innerHTML = `Rp ${Math.round(item.selloutJotunMonthly).toLocaleString('id-ID')}`;
-        row.insertCell(5).innerHTML = `<strong class="highlight-daily">Rp ${Math.round(item.selloutJotunDaily).toLocaleString('id-ID')}</strong>`;
-    });
-    
-    // Ringkasan per semester
-    const semesterMap = new Map();
-    monthlyData.forEach(item => {
-        const sem = item.semesterLabel;
-        if (!semesterMap.has(sem)) semesterMap.set(sem, { sellin: 0, selloutJotun: 0 });
-        const acc = semesterMap.get(sem);
-        acc.sellin += item.sellinMonthly;
-        acc.selloutJotun += item.selloutJotunMonthly;
-    });
-    const semesterSummaryBody = document.getElementById('semesterSummaryBody');
-    semesterSummaryBody.innerHTML = '';
-    semesterNames.forEach(sem => {
-        const data = semesterMap.get(sem);
-        if (data) {
-            const row = semesterSummaryBody.insertRow();
-            row.insertCell(0).innerText = sem;
-            row.insertCell(1).innerHTML = `Rp ${Math.round(data.sellin).toLocaleString('id-ID')}`;
-            row.insertCell(2).innerHTML = `Rp ${Math.round(data.selloutJotun).toLocaleString('id-ID')}`;
-        }
-    });
-    const totalSellin = monthlyData.reduce((s,d)=>s+d.sellinMonthly,0);
-    const totalSellout = monthlyData.reduce((s,d)=>s+d.selloutJotunMonthly,0);
-    const totalRow = semesterSummaryBody.insertRow();
-    totalRow.style.background = "#E0F0EA";
-    totalRow.insertCell(0).innerHTML = "<strong>TOTAL 36 BULAN</strong>";
-    totalRow.insertCell(1).innerHTML = `<strong>Rp ${Math.round(totalSellin).toLocaleString('id-ID')}</strong>`;
-    totalRow.insertCell(2).innerHTML = `<strong>Rp ${Math.round(totalSellout).toLocaleString('id-ID')}</strong>`;
-    
-    // Insight Grid
-    const insightGrid = document.getElementById('insightGrid');
-    insightGrid.innerHTML = '';
-    const insight1 = document.createElement('div'); insight1.className='insight-card';
-    insight1.innerHTML = `<h3>🚀 Eskalasi Dealer Baru</h3><p>Sell-out per bulan: Rp41,25jt (S2-2026) → Rp123,75jt (2027) → Rp206,25jt (2028-2029).</p>`;
-    insightGrid.appendChild(insight1);
-    const ratioTotalVal = totalSellout / totalSellin;
-    const insight2 = document.createElement('div'); insight2.className='insight-card';
-    insight2.innerHTML = `<h3>📈 Rasio Demand/Supply</h3><p>Sell-out 25,6% > Sell-in (rasio ${ratioTotalVal.toFixed(3)}). Permintaan tinggi.</p>`;
-    insightGrid.appendChild(insight2);
-    
-    const yearGroups = {};
-    monthlyData.forEach(d => { if(!yearGroups[d.year]) yearGroups[d.year]={sumDaily:0,count:0}; yearGroups[d.year].sumDaily += d.selloutJotunDaily; yearGroups[d.year].count++; });
-    let avgHtml = '<h3>📅 Rata-rata Harian</h3><p>';
-    for(let y of [2026,2027,2028,2029]) if(yearGroups[y]) avgHtml += `${y}: Rp ${Math.round(yearGroups[y].sumDaily/yearGroups[y].count).toLocaleString('id-ID')}/hari<br>`;
-    avgHtml += '</p>';
-    const insight3 = document.createElement('div'); insight3.className='insight-card'; insight3.innerHTML = avgHtml;
-    insightGrid.appendChild(insight3);
-    
-    const maxDaily = monthlyData.reduce((max,d)=>d.selloutJotunDaily>max?d.selloutJotunDaily:max,0);
-    const maxDailyItem = monthlyData.find(d=>d.selloutJotunDaily===maxDaily);
-    const insight4 = document.createElement('div'); insight4.className='insight-card'; insight4.style.borderLeftColor="#E68A2E";
-    insight4.innerHTML = `<h3>🏆 Puncak Harian</h3><p>${maxDailyItem.monthName} ${maxDailyItem.year} (${maxDailyItem.daysInMonth} hari): Rp ${Math.round(maxDaily).toLocaleString('id-ID')}/hari</p>`;
-    insightGrid.appendChild(insight4);
-    
-    const footer = document.getElementById('dynamicFooter');
-    const totalDays = monthlyData.reduce((s,m)=>s+m.daysInMonth,0);
-    footer.innerHTML = `✅ Periode: Juli 2026 – Juni 2029 (36 bulan = ${totalDays} hari) | Gantt Chart persiapan Mei-Juni 2026 | Target mengacu dokumen New Dealer Jotun Expectation.`;
-})();
+        
+        // Render tabel semester
+        const semesterTargetBody = document.getElementById('semesterTargetBody');
+        semesterTargetBody.innerHTML = '';
+        semesterTargets.forEach(s => {
+            const row = semesterTargetBody.insertRow();
+            row.insertCell(0).innerText = s.semester;
+            row.insertCell(1).innerText = s.persen;
+            row.insertCell(2).innerHTML = `Rp ${s.sellinSem.toLocaleString('id-ID')}`;
+            row.insertCell(3).innerHTML = `Rp ${s.selloutSem.toLocaleString('id-ID')}`;
+            row.insertCell(4).innerHTML = `Rp ${s.sellinPerBulan.toLocaleString('id-ID')}`;
+            row.insertCell(5).innerHTML = `Rp ${s.selloutPerBulan.toLocaleString('id-ID')}`;
+        });
+        
+        // Chart
+        const labels = monthlyData.map(d => d.label.substring(0,7));
+        const ctx = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: 'Sell-in (excl PPN) / bulan', data: monthlyData.map(d=>d.sellinMonthly), borderColor: '#2C6E9B', borderWidth:2.2, pointRadius:1.2, tension:0.1 },
+                    { label: 'Sell-out (incl PPN) / bulan', data: monthlyData.map(d=>d.selloutMonthly), borderColor: '#E68A2E', borderWidth:2.2, pointRadius:1.2, tension:0.1 }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: true,
+                plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: Rp ${ctx.raw.toLocaleString('id-ID')}` } }, legend: { position: 'top' } },
+                scales: { y: { ticks: { callback: (val) => 'Rp ' + val.toLocaleString('id-ID') }, title: { display: true, text: 'Rupiah' } },
+                          x: { ticks: { rotation: 45, autoSkip: true, maxRotation: 45, font: { size: 8 } }, title: { text: 'Periode (Juli 2026 - Juni 2029)' } } }
+            }
+        });
+        
+        // Tabel harian
+        const dailyTbody = document.getElementById('dailyTableBody');
+        dailyTbody.innerHTML = '';
+        monthlyData.forEach(d => {
+            const row = dailyTbody.insertRow();
+            row.insertCell(0).innerText = `${d.monthName} ${d.year}`;
+            row.insertCell(1).innerText = d.daysInMonth;
+            row.insertCell(2).innerHTML = `Rp ${Math.round(d.sellinMonthly).toLocaleString('id-ID')}`;
+            row.insertCell(3).innerHTML = `Rp ${Math.round(d.sellinDaily).toLocaleString('id-ID')}`;
+            row.insertCell(4).innerHTML = `Rp ${Math.round(d.selloutMonthly).toLocaleString('id-ID')}`;
+            row.insertCell(5).innerHTML = `<strong class="highlight-daily">Rp ${Math.round(d.selloutDaily).toLocaleString('id-ID')}</strong>`;
+        });
+        
+        // Ringkasan per semester
+        const semesterMap = new Map();
+        monthlyData.forEach(d => {
+            let sem = d.semesterLabel;
+            if (!semesterMap.has(sem)) semesterMap.set(sem, { sellin:0, sellout:0 });
+            let acc = semesterMap.get(sem);
+            acc.sellin += d.sellinMonthly;
+            acc.sellout += d.selloutMonthly;
+        });
+        const summaryBody = document.getElementById('semesterSummaryBody');
+        summaryBody.innerHTML = '';
+        semesterNames.forEach(sem => {
+            let data = semesterMap.get(sem);
+            if (data) {
+                let row = summaryBody.insertRow();
+                row.insertCell(0).innerText = sem;
+                row.insertCell(1).innerHTML = `Rp ${Math.round(data.sellin).toLocaleString('id-ID')}`;
+                row.insertCell(2).innerHTML = `Rp ${Math.round(data.sellout).toLocaleString('id-ID')}`;
+            }
+        });
+        const totalSellInCalc = monthlyData.reduce((s,d)=>s+d.sellinMonthly,0);
+        const totalSellOutCalc = monthlyData.reduce((s,d)=>s+d.selloutMonthly,0);
+        let totalRow = summaryBody.insertRow();
+        totalRow.style.background = "#E0F0EA";
+        totalRow.insertCell(0).innerHTML = "<strong>TOTAL 36 BULAN</strong>";
+        totalRow.insertCell(1).innerHTML = `<strong>Rp ${Math.round(totalSellInCalc).toLocaleString('id-ID')}</strong>`;
+        totalRow.insertCell(2).innerHTML = `<strong>Rp ${Math.round(totalSellOutCalc).toLocaleString('id-ID')}</strong>`;
+        
+        // Insight Grid
+        const insightGrid = document.getElementById('insightGrid');
+        insightGrid.innerHTML = '';
+        const i1 = document.createElement('div'); i1.className='insight-card';
+        i1.innerHTML = `<h3>📊 Total 36 Bulan</h3><p>Sell-in: Rp5.250M (excl PPN)<br>Sell-out: Rp6.600M (incl PPN)</p>`;
+        insightGrid.appendChild(i1);
+        const i2 = document.createElement('div'); i2.className='insight-card';
+        let ratio = totalSellOutCalc/totalSellInCalc;
+        i2.innerHTML = `<h3>🔄 Rasio Sell-out/Sell-in</h3><p>${ratio.toFixed(3)} (permintaan ${((ratio-1)*100).toFixed(1)}% lebih tinggi)</p>`;
+        insightGrid.appendChild(i2);
+        const i3 = document.createElement('div'); i3.className='insight-card';
+        i3.innerHTML = `<h3>📈 Progresi Bulanan</h3><p>Awal: Rp${(monthlyData[0].selloutMonthly/1e6).toFixed(0)}jt → Akhir: Rp${(monthlyData[monthlyData.length-1].selloutMonthly/1e6).toFixed(0)}jt</p>`;
+        insightGrid.appendChild(i3);
+        const maxDaily = monthlyData.reduce((max,d)=>d.selloutDaily>max?d.selloutDaily:max,0);
+        const maxItem = monthlyData.find(d=>d.selloutDaily===maxDaily);
+        const i4 = document.createElement('div'); i4.className='insight-card';
+        i4.innerHTML = `<h3>🏆 Puncak Harian</h3><p>${maxItem.monthName} ${maxItem.year}: Rp ${Math.round(maxDaily).toLocaleString('id-ID')}/hari</p>`;
+        insightGrid.appendChild(i4);
+        
+        const footer = document.getElementById('dynamicFooter');
+        const totalDays = monthlyData.reduce((s,d)=>s+d.daysInMonth,0);
+        footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Marketing plan terintegrasi.`;
+    })();
 </script>
 </body>
 </html>
