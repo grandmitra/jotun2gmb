@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Jotun Dealer · Target 36 Bulan (S2-2026 s.d S1-2029) + Marketing Plan</title>
+    <title>Jotun Dealer · Target 36 Bulan + Marketing Plan + Skema Deposit</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
@@ -184,6 +184,36 @@
             font-size: 0.7rem;
             color: #2c5f6e;
         }
+        .deposit-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        .deposit-card {
+            flex: 1;
+            min-width: 260px;
+            background: #fef7e0;
+            border-radius: 20px;
+            padding: 16px;
+            border-left: 8px solid #E68A2E;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .deposit-card h3 {
+            margin: 0 0 12px 0;
+            color: #b45f1b;
+            font-size: 1.1rem;
+        }
+        .deposit-card .amount {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1F7A8C;
+        }
+        .deposit-card .note {
+            font-size: 0.7rem;
+            color: #5a6e7a;
+            margin-top: 10px;
+        }
         .table-wrapper {
             overflow-x: auto;
             border-radius: 20px;
@@ -251,6 +281,7 @@
             .gantt-label { width: 160px; }
             .timeline-header { margin-left: 160px; }
             .marketing-card { flex-basis: 100%; }
+            .deposit-card { flex-basis: 100%; }
         }
     </style>
 </head>
@@ -309,7 +340,7 @@
     <div class="card">
         <div><span class="badge">📅 TARGET PERSEMESTER (36 BULAN)</span> <strong>Sell-in & Sell-out sesuai data tahunan</strong></div>
         <div class="table-wrapper">
-            <table id="semesterTable">
+            <table>
                 <thead><tr><th>Semester</th><th>Komposisi</th><th>Sell-in / Semester</th><th>Sell-out / Semester</th><th>Sell-in / Bulan</th><th>Sell-out / Bulan</th></tr></thead>
                 <tbody id="semesterTargetBody"></tbody>
             </table>
@@ -354,6 +385,46 @@
         </div>
     </div>
 
+    <!-- SKEMA PENGEMBALIAN DEPOSIT Rp150.000.000 (KARTU TAMBAHAN) -->
+    <div class="card">
+        <div><span class="badge">💰 SKEMA PENGEMBALIAN DEPOSIT</span> <strong>Rp150.000.000 (Dua versi: Jotun & Negosiasi)</strong></div>
+        <div class="deposit-grid">
+            <!-- VERSI JOTUN (bertahap) -->
+            <div class="deposit-card">
+                <h3>📌 Versi Jotun (Bertahap)</h3>
+                <p>Deposit dikembalikan setiap tahun sesuai pencapaian target <strong>Sell-in</strong>:</p>
+                <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.8rem;">
+                    <li><strong>Tahun 1 (2026-2027)</strong> : Rp50.000.000</li>
+                    <li><strong>Tahun 2 (2027-2028)</strong> : Rp50.000.000</li>
+                    <li><strong>Tahun 3 (2028-2029)</strong> : Rp50.000.000</li>
+                </ul>
+                <div class="amount">Total deposit kembali: Rp150.000.000</div>
+                <div class="note">✅ Syarat: pencapaian target sell-in tahunan sesuai kontrak (tanpa prorata).</div>
+            </div>
+
+            <!-- VERSI NEGOSIASI (persentase dari pencapaian akhir) -->
+            <div class="deposit-card">
+                <h3>🤝 Versi Negosiasi (% Pencapaian)</h3>
+                <p>Perhitungan deposit kembali berdasarkan persentase pencapaian total sell-in 3 tahun.</p>
+                <div style="background:#f0f2f5; border-radius:16px; padding:8px; margin:10px 0;">
+                    <strong>Rumus:</strong> Deposit = (Total Sell-in tercapai / Target total) × 2,857% × Target total? <br>
+                    <span style="font-size:0.7rem;">Penjelasan: Deposit = (Pencapaian %) × (Rp150.000.000)</span>
+                </div>
+                <p><strong>Koefisien dasar:</strong> Rp150.000.000 / Rp5.250.000.000 = <strong>2,857%</strong> dari total sell-in.</p>
+                <p>Maka pengembalian deposit = <strong>(Persentase pencapaian akhir) × Rp150.000.000</strong></p>
+                <div style="background:#fff3e0; border-radius:12px; padding:8px; margin-top:8px;">
+                    📊 <strong>Contoh Negosiasi:</strong> Jika pencapaian sell-in 3 tahun = 80% dari target (Rp4.200.000.000)<br>
+                    → Deposit kembali = 80% × Rp150.000.000 = <strong class="amount">Rp120.000.000</strong><br>
+                    <span style="font-size:0.7rem;">(Sisa Rp30.000.000 tidak dikembalikan atau dapat dinegosiasikan ulang)</span>
+                </div>
+                <div class="note" style="margin-top:12px;">✅ Fleksibel: Semakin tinggi pencapaian, semakin besar deposit kembali (maksimal 100% = Rp150jt).</div>
+            </div>
+        </div>
+        <div style="margin-top: 16px; background: #e5f6e5; border-radius: 18px; padding: 8px 14px; font-size:0.72rem;">
+            💡 <strong>Catatan:</strong> Skema negosiasi mengacu pada proporsi deposit terhadap total target sell-in. Pencapaian dihitung dari realisasi akhir 36 bulan. Versi Jotun mengembalikan bertahap setiap tahun dengan asumsi target tahunan tercapai.
+        </div>
+    </div>
+
     <!-- Ringkasan Semester & Kesimpulan -->
     <div class="card">
         <div style="display: flex; flex-wrap: wrap; gap: 20px;">
@@ -368,7 +439,7 @@
                     <li>Total Sell-out 3 tahun (incl PPN): Rp6,60 Miliar → Rp6.600.000.000</li>
                     <li>Rasio Sell-out / Sell-in = 1,257 → permintaan 25,7% di atas pasokan</li>
                     <li>Target bulanan meningkat dari Rp145,8 juta (awal) hingga Rp275,0 juta (akhir)</li>
-                    <li>Marketing plan terintegrasi untuk memastikan pencapaian target progresif</li>
+                    <li>Skema deposit memberikan insentif bertahap (Jotun) atau fleksibel berdasarkan capaian (negosiasi)</li>
                 </ul>
             </div>
         </div>
@@ -379,26 +450,22 @@
 <script>
     (function() {
         // DATA BERDASARKAN INPUT GAMBAR
-        // Sell-in per tahun (exclude PPN): Tahun1=1.500M, Tahun2=1.750M, Tahun3=2.000M
         const sellInYear1 = 1500000000;
         const sellInYear2 = 1750000000;
         const sellInYear3 = 2000000000;
         const totalSellIn = sellInYear1 + sellInYear2 + sellInYear3; // 5.250.000.000
         
-        // Sell-out per bulan (include PPN): Tahun1=150jt/bln, Tahun2=180jt/bln, Tahun3=220jt/bln
         const sellOutMonthYear1 = 150000000;
         const sellOutMonthYear2 = 180000000;
         const sellOutMonthYear3 = 220000000;
         const totalSellOut = (sellOutMonthYear1 * 12) + (sellOutMonthYear2 * 12) + (sellOutMonthYear3 * 12); // 6.600.000.000
         
-        // Komposisi semester progresif (6 semester mulai S2-2026 s.d S1-2029)
         const semesterComposition = [0.05, 0.10, 0.15, 0.20, 0.25, 0.25];
         const semesterNames = [
             "Semester 2 - 2026", "Semester 1 - 2027", "Semester 2 - 2027",
             "Semester 1 - 2028", "Semester 2 - 2028", "Semester 1 - 2029"
         ];
         
-        // Hitung target per semester berdasarkan komposisi dari total 36 bulan
         let semesterTargets = [];
         for (let i=0; i<semesterComposition.length; i++) {
             let pct = semesterComposition[i];
@@ -418,14 +485,13 @@
         
         const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         
-        // Periode 36 bulan: mulai Juli 2026 (S2-2026) sampai Juni 2029 (S1-2029)
         const semesterPeriods = [
-            { startYear:2026, startMonth:6, endYear:2026, endMonth:11, semIdx:0 }, // S2-2026
-            { startYear:2027, startMonth:0, endYear:2027, endMonth:5, semIdx:1 },  // S1-2027
-            { startYear:2027, startMonth:6, endYear:2027, endMonth:11, semIdx:2 }, // S2-2027
-            { startYear:2028, startMonth:0, endYear:2028, endMonth:5, semIdx:3 },  // S1-2028
-            { startYear:2028, startMonth:6, endYear:2028, endMonth:11, semIdx:4 }, // S2-2028
-            { startYear:2029, startMonth:0, endYear:2029, endMonth:5, semIdx:5 }   // S1-2029
+            { startYear:2026, startMonth:6, endYear:2026, endMonth:11, semIdx:0 },
+            { startYear:2027, startMonth:0, endYear:2027, endMonth:5, semIdx:1 },
+            { startYear:2027, startMonth:6, endYear:2027, endMonth:11, semIdx:2 },
+            { startYear:2028, startMonth:0, endYear:2028, endMonth:5, semIdx:3 },
+            { startYear:2028, startMonth:6, endYear:2028, endMonth:11, semIdx:4 },
+            { startYear:2029, startMonth:0, endYear:2029, endMonth:5, semIdx:5 }
         ];
         
         let monthlyData = [];
@@ -453,7 +519,7 @@
             }
         }
         
-        // Render tabel semester
+        // Tabel semester
         const semesterTargetBody = document.getElementById('semesterTargetBody');
         semesterTargetBody.innerHTML = '';
         semesterTargets.forEach(s => {
@@ -499,7 +565,7 @@
             row.insertCell(5).innerHTML = `<strong class="highlight-daily">Rp ${Math.round(d.selloutDaily).toLocaleString('id-ID')}</strong>`;
         });
         
-        // Ringkasan per semester
+        // Ringkasan semester
         const semesterMap = new Map();
         monthlyData.forEach(d => {
             let sem = d.semesterLabel;
@@ -527,7 +593,7 @@
         totalRow.insertCell(1).innerHTML = `<strong>Rp ${Math.round(totalSellInCalc).toLocaleString('id-ID')}</strong>`;
         totalRow.insertCell(2).innerHTML = `<strong>Rp ${Math.round(totalSellOutCalc).toLocaleString('id-ID')}</strong>`;
         
-        // Insight Grid
+        // Insight grid
         const insightGrid = document.getElementById('insightGrid');
         insightGrid.innerHTML = '';
         const i1 = document.createElement('div'); i1.className='insight-card';
@@ -548,7 +614,7 @@
         
         const footer = document.getElementById('dynamicFooter');
         const totalDays = monthlyData.reduce((s,d)=>s+d.daysInMonth,0);
-        footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Marketing plan terintegrasi.`;
+        footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Skema deposit: bertahap (Jotun) atau berdasarkan persentase pencapaian (negosiasi).`;
     })();
 </script>
 </body>
