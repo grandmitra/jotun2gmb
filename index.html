@@ -277,41 +277,40 @@
             font-size: 0.68rem;
             color: #5a7b8c;
         }
+
+        /* Perbaikan iframe - card terpisah dengan gaya konsisten */
+        .iframe-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 1.2rem 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #f8fafc;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2edf2;
+        }
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         @media (max-width: 640px) {
             .gantt-label { width: 160px; }
             .timeline-header { margin-left: 160px; }
             .marketing-card { flex-basis: 100%; }
             .deposit-card { flex-basis: 100%; }
         }
-
-        .container-iframe {
-    position: relative;
-    width: 100%;
-    max-width: 900px; /* Atur lebar maksimal sesuai keinginan */
-    margin: 20px auto;
-    padding-bottom: 56.25%; /* Rasio 16:9 */
-    height: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border: 1px solid #e1e1e1;
-    background: #ffffff;
-  }
-
-  .container-iframe iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  
-  /* Opsional: Efek hover agar lebih interaktif */
-  .container-iframe:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease;
-  }
     </style>
 </head>
 <body>
@@ -436,8 +435,7 @@
                 <h3>🤝 Versi Negosiasi (% Pencapaian)</h3>
                 <p>Perhitungan deposit kembali berdasarkan persentase pencapaian total sell-in 3 tahun.</p>
                 <div style="background:#f0f2f5; border-radius:16px; padding:8px; margin:10px 0;">
-                    <strong>Rumus:</strong> Deposit = (Total Sell-in tercapai / Target total) × 2,857% × Target total? <br>
-                    <span style="font-size:0.7rem;">Penjelasan: Deposit = (Pencapaian %) × (Rp150.000.000)</span>
+                    <strong>Rumus:</strong> Deposit = (Total Sell-in tercapai / Target total) × Rp150.000.000
                 </div>
                 <p><strong>Koefisien dasar:</strong> Rp150.000.000 / Rp5.250.000.000 = <strong>2,857%</strong> dari total sell-in.</p>
                 <p>Maka pengembalian deposit = <strong>(Persentase pencapaian akhir) × Rp150.000.000</strong></p>
@@ -451,6 +449,22 @@
         </div>
         <div style="margin-top: 16px; background: #e5f6e5; border-radius: 18px; padding: 8px 14px; font-size:0.72rem;">
             💡 <strong>Catatan:</strong> Skema negosiasi mengacu pada proporsi deposit terhadap total target sell-in. Pencapaian dihitung dari realisasi akhir 36 bulan. Versi Jotun mengembalikan bertahap setiap tahun dengan asumsi target tahunan tercapai.
+        </div>
+    </div>
+
+    <!-- IFRAME terpisah dengan gaya menyatu (perbaikan utama) -->
+    <div class="iframe-card">
+        <div style="margin-bottom: 12px;"><span class="badge">📊 DASHBOARD EKSTERNAL</span> <strong>Live Data & Monitoring</strong></div>
+        <div class="iframe-wrapper">
+            <iframe 
+                src="https://script.google.com/macros/s/AKfycbwywuu-aklW5VjZQwl_Pd_w940BVzsbGfPFSPS23u5rCjk1678IcKycVO-U4C9qhLpp/exec" 
+                allow="geolocation; microphone; camera"
+                loading="lazy"
+                title="Google Apps Script Dashboard Jotun">
+            </iframe>
+        </div>
+        <div style="margin-top: 8px; font-size: 0.7rem; color: #5a7b8c; text-align: center;">
+            🔄 Data real-time dari sistem eksternal – jika tidak muncul, pastikan koneksi internet aktif.
         </div>
     </div>
 
@@ -472,15 +486,8 @@
                 </ul>
             </div>
         </div>
-<div class="container-iframe">
-  <iframe 
-    src="https://script.google.com/macros/s/AKfycbwywuu-aklW5VjZQwl_Pd_w940BVzsbGfPFSPS23u5rCjk1678IcKycVO-U4C9qhLpp/exec" 
-    allow="geolocation; microphone; camera"
-    loading="lazy">
-  </iframe>
-</div>
-        
     </div>
+
     <div class="footer-note" id="dynamicFooter"></div>
 </div>
 
