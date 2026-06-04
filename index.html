@@ -305,11 +305,47 @@
             border: none;
         }
 
+        /* Grid Maps / Lokasi */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .map-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 10px;
+            border: 1px solid #e2edf2;
+        }
+        .map-box h4 {
+            margin: 0 0 8px 0;
+            color: #0B4F6C;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         @media (max-width: 640px) {
             .gantt-label { width: 160px; }
             .timeline-header { margin-left: 160px; }
             .marketing-card { flex-basis: 100%; }
             .deposit-card { flex-basis: 100%; }
+            .maps-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -323,6 +359,46 @@
             <div class="expectation-desc">
                 📊 <strong>Total Sell-in 3 tahun (excl PPN):</strong> Rp5.250.000.000 | <strong>Total Sell-out 3 tahun (incl PPN):</strong> Rp6.600.000.000<br>
                 ✅ Komposisi semester: 5% → 10% → 15% → 20% → 25% → 25% | Periode: Juli 2026 – Juni 2029
+            </div>
+        </div>
+    </div>
+
+    <!-- Tambahan Section: Gambar Billboard & Peta Lokasi Toko -->
+    <div class="card">
+        <div style="margin-bottom: 10px;"><span class="badge">📐 LAYOUT & REFERENSI LOKASI</span> <strong>Visual Toko & Integrasi Google Maps</strong></div>
+        <div class="image-panel" style="margin-bottom: 20px;">
+            <div class="image-card" style="flex: 1 1 100%;">
+                <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjd1JyqvsIdla4hwsrRbTKZuVN8Sfc0oU996nZkNF0CPwZRf1GapDW5xYvqZGEd4pYXqm7Q71d5XIQkCPIpsW89QP3lIC0Xdywz6R2e_27dLKh4BegkRWN70QAxUmBENHFM0a4YpofA3hyAYe5PXGRHIRshtYToMaQNEdotopo_xiF-SmuIIKm_yk8T_Q9i/s1600/WhatsApp%20Image%202026-02-05%20at%2013.25.51%20(2).jpeg" target="_blank" rel="noopener noreferrer">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjd1JyqvsIdla4hwsrRbTKZuVN8Sfc0oU996nZkNF0CPwZRf1GapDW5xYvqZGEd4pYXqm7Q71d5XIQkCPIpsW89QP3lIC0Xdywz6R2e_27dLKh4BegkRWN70QAxUmBENHFM0a4YpofA3hyAYe5PXGRHIRshtYToMaQNEdotopo_xiF-SmuIIKm_yk8T_Q9i/s1600/WhatsApp%20Image%202026-02-05%20at%2013.25.51%20(2).jpeg" alt="Billboard Toko Grand Mitra" style="max-height: 350px;">
+                </a>
+                <div class="caption">🖼️ Billboard Toko Grand Mitra Tampak Depan · Klik untuk memperbesar</div>
+            </div>
+        </div>
+
+        <div class="maps-grid">
+            <div class="map-box">
+                <h4>📍 Toko GrandMitra Bangunan PIK2</h4>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d14361.398396374532!2d106.7116703!3d-6.067791199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x2e6a03fc6a46f3cd%3A0x869e7566d672b37e!2sGrand%20Mitra%20-%20Toko%20Bangunan%20Modern%20PIK%202%20Tangerang%2C%20Jalan%20MH.%20Thamrin%20center%20avenue%20No.10%2C%20Banten%2C%20Kec.%20Kosambi%2C%20Kabupaten%20Tangerang%2C%20Banten%2015213!3m2!1d-6.068210499999999!2d106.7076702!5e1!3m2!1sen!2sid!4v1780548344395!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="map-box">
+                <h4>📍 Mitra Bangunan Cipta</h4>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d377.3578597222957!2d106.74561040116508!3d-6.112124439626106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x2e6a03fc6a46f3cd%3A0x869e7566d672b37e!2sGrand%20Mitra%20-%20Toko%20Bangunan%20Modern%20PIK%202%20Tangerang%2C%20Jalan%20MH.%20Thamrin%20center%20avenue%20No.10%2C%20Banten%2C%20Kec.%20Kosambi%2C%20Kabupaten%20Tangerang%2C%20Banten%2015213!3m2!1d-6.068210499999999!2d106.7076702!5e1!3m2!1sen!2sid!4v1780548409368!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="map-box">
+                <h4>📍 Mitra Bangunan</h4>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d565.3836533239522!2d106.73672223247185!3d-6.125644383203217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d-6.1270698999999995!2d106.74470459999999!4m5!1s0x2e6a03fc6a46f3cd%3A0x869e7566d672b37e!2sGrand%20Mitra%20-%20Toko%20Bangunan%20Modern%20PIK%202%20Tangerang%2C%20Jalan%20MH.%20Thamrin%20center%20avenue%20No.10%2C%20Banten%2C%20Kec.%20Kosambi%2C%20Kabupaten%20Tangerang%2C%20Banten%2015213!3m2!1d-6.068210499999999!2d106.7076702!5e1!3m2!1sen!2sid!4v1780548504857!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="map-box">
+                <h4>📍 Toko Cat Mitra</h4>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!4v1780548742535!6m8!1m7!1sjxjkjjiZG54SYoKEywBL_A!2m2!1d-6.126318895211758!2d106.737841318142!3f202.15278487990807!4f8.809057545460092!5f0.7820865974627469" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -413,46 +489,56 @@
         </div>
     </div>
 
-    <!-- SKEMA PENGEMBALIAN DEPOSIT Rp150.000.000 (KARTU TAMBAHAN) -->
+    <!-- SKEMA PENGEMBALIAN DEPOSIT Rp200.000.000 (UPDATE NOMINAL & VERSI) -->
     <div class="card">
-        <div><span class="badge">💰 SKEMA PENGEMBALIAN DEPOSIT</span> <strong>Rp150.000.000 (Dua versi: Jotun & Negosiasi)</strong></div>
+        <div><span class="badge">💰 SKEMA PENGEMBALIAN DEPOSIT</span> <strong>Rp200.000.000 (Tiga Skema Integrasi)</strong></div>
         <div class="deposit-grid">
-            <!-- VERSI JOTUN (bertahap) -->
+            <!-- SKEMA 1: VERSI JOTUN (bertahap) -->
             <div class="deposit-card">
-                <h3>📌 Versi Jotun (Bertahap)</h3>
+                <h3>📌 Skema 1: Versi Jotun (Bertahap)</h3>
                 <p>Deposit dikembalikan setiap tahun sesuai pencapaian target <strong>Sell-in</strong>:</p>
-                <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.8rem;">
-                    <li><strong>Tahun 1 (2026-2027)</strong> : Rp50.000.000</li>
-                    <li><strong>Tahun 2 (2027-2028)</strong> : Rp50.000.000</li>
-                    <li><strong>Tahun 3 (2028-2029)</strong> : Rp50.000.000</li>
+                <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.8rem; line-height: 1.6;">
+                    <li><strong>Tahun 1 (2026-2027)</strong> : Rp66.666.667</li>
+                    <li><strong>Tahun 2 (2027-2028)</strong> : Rp66.666.667</li>
+                    <li><strong>Tahun 3 (2028-2029)</strong> : Rp66.666.667</li>
                 </ul>
-                <div class="amount">Total deposit kembali: Rp150.000.000</div>
+                <div class="amount" style="font-size: 1.2rem; margin-top: 10px;">Total deposit kembali: Rp200.000.000</div>
                 <div class="note">✅ Syarat: pencapaian target sell-in tahunan sesuai kontrak (tanpa prorata).</div>
             </div>
 
-            <!-- VERSI NEGOSIASI (persentase dari pencapaian akhir) -->
-            <div class="deposit-card">
-                <h3>🤝 Versi Negosiasi (% Pencapaian)</h3>
+            <!-- SKEMA 2: VERSI NEGOSIASI (persentase dari pencapaian akhir) -->
+            <div class="deposit-card" style="border-left-color: #1F7A8C; background: #eef7f9;">
+                <h3 style="color: #0B4F6C;">🤝 Skema 2: Versi Negosiasi (% Pencapaian)</h3>
                 <p>Perhitungan deposit kembali berdasarkan persentase pencapaian total sell-in 3 tahun.</p>
-                <div style="background:#f0f2f5; border-radius:16px; padding:8px; margin:10px 0;">
-                    <strong>Rumus:</strong> Deposit = (Total Sell-in tercapai / Target total) × Rp150.000.000
+                <div style="background:#ffffff; border-radius:16px; padding:8px; margin:10px 0; font-size: 0.75rem; border: 1px solid #dcdff2;">
+                    <strong>Rumus:</strong> Deposit Kembali = (Total Sell-in tercapai / Target total) × Rp200.000.000
                 </div>
-                <p><strong>Koefisien dasar:</strong> Rp150.000.000 / Rp5.250.000.000 = <strong>2,857%</strong> dari total sell-in.</p>
-                <p>Maka pengembalian deposit = <strong>(Persentase pencapaian akhir) × Rp150.000.000</strong></p>
-                <div style="background:#fff3e0; border-radius:12px; padding:8px; margin-top:8px;">
+                <p style="font-size: 0.75rem;"><strong>Koefisien dasar:</strong> Rp200.000.000 / Rp5.250.000.000 = <strong>3,8%</strong> dari total sell-in.</p>
+                <div style="background:#fff3e0; border-radius:12px; padding:8px; margin-top:8px; font-size: 0.75rem;">
                     📊 <strong>Contoh Negosiasi:</strong> Jika pencapaian sell-in 3 tahun = 80% dari target (Rp4.200.000.000)<br>
-                    → Deposit kembali = 80% × Rp150.000.000 = <strong class="amount">Rp120.000.000</strong><br>
-                    <span style="font-size:0.7rem;">(Sisa Rp30.000.000 tidak dikembalikan atau dapat dinegosiasikan ulang)</span>
+                    → Deposit kembali = 80% × Rp200.000.000 = <strong style="color:#c75119; font-size: 1rem;">Rp160.000.000</strong><br>
+                    <span>(Sisa Rp40.000.000 tidak dikembalikan / dinegosiasikan ulang)</span>
                 </div>
-                <div class="note" style="margin-top:12px;">✅ Fleksibel: Semakin tinggi pencapaian, semakin besar deposit kembali (maksimal 100% = Rp150jt).</div>
+                <div class="note" style="margin-top:12px;">✅ Fleksibel: Semakin tinggi pencapaian, semakin besar deposit kembali (maksimal 100% = Rp200jt).</div>
             </div>
-        </div>
-        <div style="margin-top: 16px; background: #e5f6e5; border-radius: 18px; padding: 8px 14px; font-size:0.72rem;">
-            💡 <strong>Catatan:</strong> Skema negosiasi mengacu pada proporsi deposit terhadap total target sell-in. Pencapaian dihitung dari realisasi akhir 36 bulan. Versi Jotun mengembalikan bertahap setiap tahun dengan asumsi target tahunan tercapai.
+
+            <!-- SKEMA 3: TOTAL ACHIEVEMENT TARGET 100% -->
+            <div class="deposit-card" style="border-left-color: #2ca74d; background: #f0faf2;">
+                <h3 style="color: #1b6e30;">🎯 Skema 3: Total Achievement Akhir</h3>
+                <p>Ketentuan pengembalian penuh bersyarat pada akhir tahun ketiga:</p>
+                <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.75rem; line-height: 1.6;">
+                    <li><strong>Total Sell-in 3 tahun (excl PPN):</strong> Rp5.250.000.000</li>
+                    <li><strong>Total Sell-out 3 tahun (incl PPN):</strong> Rp6.600.000.000</li>
+                </ul>
+                <div style="background: #ffffff; border-radius: 12px; padding: 10px; border: 1px solid #ccebd5; margin-top: 10px; font-weight: bold; color: #1b6e30; text-align: center; font-size: 0.8rem;">
+                    🏆 Deposit akan dikembalikan PENUH (100% = Rp200.000.000) jika Total Achievement kumulatif mencapai 100%.
+                </div>
+                <div class="note" style="margin-top:12px; color: #406b4d;">✅ Menjamin kepastian dana kembali seiring komitmen target jangka panjang tercapai sempurna.</div>
+            </div>
         </div>
     </div>
 
-    <!-- IFRAME terpisah dengan gaya menyatu (perbaikan utama) -->
+    <!-- IFRAME terpisah dengan gaya menyatu -->
     <div class="iframe-card">
         <div style="margin-bottom: 12px;"><span class="badge">📊 DASHBOARD EKSTERNAL</span> <strong>Live Data & Monitoring</strong></div>
         <div class="iframe-wrapper">
@@ -482,7 +568,7 @@
                     <li>Total Sell-out 3 tahun (incl PPN): Rp6,60 Miliar → Rp6.600.000.000</li>
                     <li>Rasio Sell-out / Sell-in = 1,257 → permintaan 25,7% di atas pasokan</li>
                     <li>Target bulanan meningkat dari Rp145,8 juta (awal) hingga Rp275,0 juta (akhir)</li>
-                    <li>Skema deposit memberikan insentif bertahap (Jotun) atau fleksibel berdasarkan capaian (negosiasi)</li>
+                    <li>Skema deposit Rp200.000.000 diatur proporsional 3,8% dari total sell-in, mendorong pencapaian 100% di akhir periode agar kembali utuh.</li>
                 </ul>
             </div>
         </div>
@@ -493,7 +579,6 @@
 
 <script>
     (function() {
-        // DATA BERDASARKAN INPUT GAMBAR
         const sellInYear1 = 1500000000;
         const sellInYear2 = 1750000000;
         const sellInYear3 = 2000000000;
@@ -658,7 +743,7 @@
         
         const footer = document.getElementById('dynamicFooter');
         const totalDays = monthlyData.reduce((s,d)=>s+d.daysInMonth,0);
-        footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Skema deposit: bertahap (Jotun) atau berdasarkan persentase pencapaian (negosiasi).`;
+        footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Skema deposit Rp200.000.000: bertahap, negosiasi % pencapaian, atau pengembalian penuh bersyarat target akhir 100%.`;
     })();
 </script>
 </body>
