@@ -340,12 +340,50 @@
             border: 0;
         }
 
+        /* Tambahan untuk chart komposisi */
+        .chart-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        .chart-box {
+            flex: 1 1 280px;
+            min-width: 220px;
+        }
+        .chart-box canvas {
+            max-height: 280px;
+            max-width: 100%;
+        }
+        .comp-table {
+            margin-top: 16px;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .comp-table th {
+            background: #0B4F6C;
+            color: white;
+            padding: 8px;
+            text-align: center;
+        }
+        .comp-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #e2edf2;
+            text-align: right;
+        }
+        .comp-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
         @media (max-width: 640px) {
             .gantt-label { width: 160px; }
             .timeline-header { margin-left: 160px; }
             .marketing-card { flex-basis: 100%; }
             .deposit-card { flex-basis: 100%; }
             .maps-grid { grid-template-columns: 1fr; }
+            .chart-box { flex: 1 1 100%; }
         }
     </style>
 </head>
@@ -401,6 +439,47 @@
                 </div>
             </div>
         </div>
+
+        <!-- ====== KOMPOSISI PENJUALAN DI BAWAH PETA (DIPERBAIKI) ====== -->
+        <div style="margin-top: 28px; border-top: 2px dashed #dce7ef; padding-top: 20px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+                <span class="badge">💰 KOMPOSISI PENJUALAN</span>
+                <strong style="font-size: 1rem;">Total Rp 15.798.900.650</strong>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-box">
+                    <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">🍩 Doughnut Chart</h4>
+                    <canvas id="doughnutChart" style="max-height: 280px;"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">📊 Bar Chart</h4>
+                    <canvas id="barChart" style="max-height: 280px;"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">📉 Scatter Plot</h4>
+                    <canvas id="scatterChart" style="max-height: 280px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Tabel komposisi -->
+            <div class="table-wrapper" style="margin-top: 12px;">
+                <table class="comp-table" id="compTable">
+                    <thead>
+                        <tr>
+                            <th>Lokasi Toko</th>
+                            <th>Persentase</th>
+                            <th>Nilai (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="compTableBody"></tbody>
+                </table>
+            </div>
+            <div style="font-size: 0.7rem; color: #5a6e7a; margin-top: 6px; text-align: right;">
+                * Total persentase = 100%
+            </div>
+        </div>
+        <!-- ====== AKHIR KOMPOSISI ====== -->
     </div>
 
     <!-- Gambar Denah & Dokumen (klik buka tab baru) -->
@@ -661,7 +740,7 @@
             row.insertCell(5).innerHTML = `Rp ${s.selloutPerBulan.toLocaleString('id-ID')}`;
         });
         
-        // Chart
+        // Chart Trend
         const labels = monthlyData.map(d => d.label.substring(0,7));
         const ctx = document.getElementById('trendChart').getContext('2d');
         new Chart(ctx, {
@@ -744,6 +823,162 @@
         const footer = document.getElementById('dynamicFooter');
         const totalDays = monthlyData.reduce((s,d)=>s+d.daysInMonth,0);
         footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Skema deposit Rp200.000.000: bertahap, negosiasi % pencapaian, atau pengembalian penuh bersyarat target akhir 100%.`;
+
+        // ====== KOMPOSISI PENJUALAN (DIPERBAIKI) ======
+        const totalPenjualan = 15798900650;
+        // Data persentase yang benar (total 100%)
+        const tokoData = [
+            { nama: 'GrandMitra Bangunan PIK2', persen: 23.5 },
+            { nama: 'Mitra Bangunan Cipta', persen: 26.5 },
+            { nama: 'Mitra Bangunan', persen: 18.5 },
+            { nama: 'Toko Cat Mitra', persen: 31.5 }
+        ];
+        // Hitung nilai masing-masing toko (langsung dari persentase)
+        const nilaiToko = tokoData.map(t => (t.persen / 100) * totalPenjualan);
+
+        // Isi tabel komposisi
+        const compBody = document.getElementById('compTableBody');
+        compBody.innerHTML = '';
+        tokoData.forEach((t, i) => {
+            const row = compBody.insertRow();
+            row.insertCell(0).innerText = t.nama;
+            row.insertCell(1).innerText = t.persen.toFixed(1) + '%';
+            row.insertCell(2).innerHTML = `Rp ${Math.round(nilaiToko[i]).toLocaleString('id-ID')}`;
+        });
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: tokoData.map(t => t.nama),
+                datasets: [{
+                    data: nilaiToko,
+                    backgroundColor: ['#1F7A8C', '#2C6E9B', '#E68A2E', '#c75119'],
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 9 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                let value = context.parsed;
+                                let total = context.dataset.data.reduce((a,b) => a + b, 0);
+                                let percentage = ((value / total) * 100).toFixed(2);
+                                return label + ': Rp ' + value.toLocaleString('id-ID') + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                },
+                cutout: '60%',
+            }
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: tokoData.map(t => t.nama),
+                datasets: [{
+                    label: 'Nilai Penjualan (Rp)',
+                    data: nilaiToko,
+                    backgroundColor: ['#1F7A8C', '#2C6E9B', '#E68A2E', '#c75119'],
+                    borderRadius: 6,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Rp ' + context.raw.toLocaleString('id-ID');
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rp ' + (value / 1e6).toFixed(0) + 'jt';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Scatter Plot
+        const scatterCtx = document.getElementById('scatterChart').getContext('2d');
+        const scatterData = tokoData.map((t, i) => ({
+            x: i + 1,
+            y: nilaiToko[i],
+            label: t.nama
+        }));
+
+        new Chart(scatterCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Nilai Penjualan per Toko',
+                    data: scatterData,
+                    backgroundColor: '#1F7A8C',
+                    borderColor: '#0B4F6C',
+                    pointRadius: 8,
+                    pointHoverRadius: 12,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let point = context.raw;
+                                return point.label + ': Rp ' + point.y.toLocaleString('id-ID');
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        min: 0,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value) {
+                                if (value >= 1 && value <= 4) {
+                                    return tokoData[value - 1].nama.substring(0, 15) + '…';
+                                }
+                                return '';
+                            }
+                        },
+                        title: { display: true, text: 'Lokasi Toko' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Nilai Penjualan (Rp)' },
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rp ' + (value / 1e6).toFixed(0) + 'jt';
+                            }
+                        }
+                    }
+                }
+            }
+        });
     })();
 </script>
 </body>
