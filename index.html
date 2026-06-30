@@ -278,7 +278,6 @@
             color: #5a7b8c;
         }
 
-        /* Perbaikan iframe - card terpisah dengan gaya konsisten */
         .iframe-card {
             background: white;
             border-radius: 24px;
@@ -305,7 +304,6 @@
             border: none;
         }
 
-        /* Grid Maps / Lokasi */
         .maps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -340,7 +338,6 @@
             border: 0;
         }
 
-        /* Tambahan untuk chart komposisi */
         .chart-row {
             display: flex;
             flex-wrap: wrap;
@@ -401,7 +398,7 @@
         </div>
     </div>
 
-    <!-- Tambahan Section: Gambar Billboard & Peta Lokasi Toko -->
+    <!-- ===== KARTU PETA & KOMPOSISI PENJUALAN (tetap) ===== -->
     <div class="card">
         <div style="margin-bottom: 10px;"><span class="badge">📐 LAYOUT & REFERENSI LOKASI</span> <strong>Visual Toko & Integrasi Google Maps</strong></div>
         <div class="image-panel" style="margin-bottom: 20px;">
@@ -440,7 +437,7 @@
             </div>
         </div>
 
-        <!-- ====== KOMPOSISI PENJUALAN DI BAWAH PETA (DIPERBAIKI) ====== -->
+        <!-- KOMPOSISI PENJUALAN -->
         <div style="margin-top: 28px; border-top: 2px dashed #dce7ef; padding-top: 20px;">
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
                 <span class="badge">💰 KOMPOSISI PENJUALAN</span>
@@ -462,16 +459,9 @@
                 </div>
             </div>
 
-            <!-- Tabel komposisi -->
             <div class="table-wrapper" style="margin-top: 12px;">
                 <table class="comp-table" id="compTable">
-                    <thead>
-                        <tr>
-                            <th>Lokasi Toko</th>
-                            <th>Persentase</th>
-                            <th>Nilai (Rp)</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>Lokasi Toko</th><th>Persentase</th><th>Nilai (Rp)</th></tr></thead>
                     <tbody id="compTableBody"></tbody>
                 </table>
             </div>
@@ -479,10 +469,33 @@
                 * Total persentase = 100%
             </div>
         </div>
-        <!-- ====== AKHIR KOMPOSISI ====== -->
     </div>
 
-    <!-- Gambar Denah & Dokumen (klik buka tab baru) -->
+    <!-- ===== KARTU ALOKASI JOTUN 36 BULAN ===== -->
+    <div class="card">
+        <div><span class="badge">📊 ALOKASI JOTUN 36 BULAN</span> <strong>Target Rp6.600.000.000 dibagi proporsional ke 4 toko</strong></div>
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">Perbandingan Sell Out Aktual vs Target Jotun per Bulan</h4>
+                <canvas id="alokasiBarChart" style="max-height: 280px;"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">Proporsi Alokasi Jotun</h4>
+                <canvas id="alokasiDoughnutChart" style="max-height: 280px;"></canvas>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="comp-table">
+                <thead><tr><th>Toko</th><th>Kontribusi</th><th>Sell Out Aktual/Month</th><th>Alokasi Jotun Total 36 bln</th><th>Alokasi Jotun/Bulan</th><th>% Alokasi</th></tr></thead>
+                <tbody id="alokasiTableBody"></tbody>
+            </table>
+        </div>
+        <div style="margin-top:12px; background:#e9f2f5; padding:8px 14px; border-radius:16px; font-size:0.75rem;">
+            💡 Total Sell Out Aktual (Mar'25-Jun'26) = Rp15.798.900.650 · Target Jotun 36 bulan = Rp6.600.000.000
+        </div>
+    </div>
+
+    <!-- Gambar Denah & Dokumen -->
     <div class="card">
         <div style="margin-bottom: 10px;"><span class="badge">📐 LAYOUT & REFERENSI</span> <strong>Denah rak Jotun 25m² + Dokumen Ekspektasi Dealer</strong></div>
         <div class="image-panel">
@@ -501,7 +514,7 @@
         </div>
     </div>
 
-    <!-- Project Plan Gantt Chart (Persiapan) -->
+    <!-- Project Plan Gantt Chart -->
     <div class="card">
         <div><span class="badge">📋 PROJECT PLAN PERSIAPAN JOTUN</span> <strong>Milestone menuju penjualan Juli 2026</strong></div>
         <div class="gantt-container">
@@ -519,7 +532,7 @@
         </div>
     </div>
 
-    <!-- Tabel Target Semester (progresif 6 semester) -->
+    <!-- Tabel Target Semester -->
     <div class="card">
         <div><span class="badge">📅 TARGET PERSEMESTER (36 BULAN)</span> <strong>Sell-in & Sell-out sesuai data tahunan</strong></div>
         <div class="table-wrapper">
@@ -548,31 +561,30 @@
         </div>
     </div>
 
-    <!-- MARKETING PLAN (lengkap) -->
+    <!-- MARKETING PLAN -->
     <div class="card">
         <div><span class="badge">🎯 MARKETING PLAN JOTUN</span> <strong>Strategi 36 bulan untuk mencapai target</strong></div>
         <div class="marketing-grid">
-            <div class="marketing-card"><h4>🏪 In-store Promo</h4><p>ATL, BTL, Billboard, PWP (Purchase with Purchase), GWP (Gift with Purchase), POP display</p></div>
-            <div class="marketing-card"><h4>🧑‍🎨 Brand Awareness</h4><p>Gathering tukang, pameran proyek, workshop cat, kontes desain, sponsor event bangunan</p></div>
-            <div class="marketing-card"><h4>📘 Product Knowledge</h4><p>Sertifikasi sales, demo produk, video tutorial, katalog teknis, aplikasi warna 3D</p></div>
-            <div class="marketing-card"><h4>📄 Sebar Brosur</h4><p>Flyer di toko material, selebaran langsung ke proyek, digital brochure via WhatsApp</p></div>
-            <div class="marketing-card"><h4>🤝 Kerjasama Kontraktor & Developer</h4><p>Program loyalitas, price list khusus, insentif proyek besar, MOU with housing developer</p></div>
-            <div class="marketing-card"><h4>💳 Disc Member</h4><p>Member card, poin reward, diskon bertahap, birthday promo, referral bonus</p></div>
-            <div class="marketing-card"><h4>🏦 Kerjasama Merchant Bank</h4><p>0% cicilan, cashback, promo kartu kredit, edc khusus, paylater mitra</p></div>
-            <div class="marketing-card"><h4>🏗️ Spreading Sales Project</h4><p>Sales kit untuk mitra, canvassing ke proyek, sales tour, mobile showroom, webinar proyek</p></div>
-            <div class="marketing-card"><h4>📱 Digital Marketing</h4><p>Google Ads, Instagram & FB ads, retargeting, SEO, konten TikTok, kolaborasi influencer</p></div>
-            <div class="marketing-card"><h4>🎁 Loyalty Program</h4><p>Point untuk pembelian berulang, undian berhadiah, special gift for top buyer</p></div>
+            <div class="marketing-card"><h4>🏪 In-store Promo</h4><p>ATL, BTL, Billboard, PWP, GWP, POP display</p></div>
+            <div class="marketing-card"><h4>🧑‍🎨 Brand Awareness</h4><p>Gathering tukang, pameran proyek, workshop cat, kontes desain</p></div>
+            <div class="marketing-card"><h4>📘 Product Knowledge</h4><p>Sertifikasi sales, demo produk, video tutorial, katalog teknis</p></div>
+            <div class="marketing-card"><h4>📄 Sebar Brosur</h4><p>Flyer di toko material, selebaran proyek, digital brochure</p></div>
+            <div class="marketing-card"><h4>🤝 Kerjasama Kontraktor & Developer</h4><p>Program loyalitas, price list khusus, insentif proyek, MOU</p></div>
+            <div class="marketing-card"><h4>💳 Disc Member</h4><p>Member card, poin reward, diskon bertahap, referral bonus</p></div>
+            <div class="marketing-card"><h4>🏦 Kerjasama Merchant Bank</h4><p>0% cicilan, cashback, promo kartu kredit, paylater</p></div>
+            <div class="marketing-card"><h4>🏗️ Spreading Sales Project</h4><p>Sales kit, canvassing, sales tour, mobile showroom</p></div>
+            <div class="marketing-card"><h4>📱 Digital Marketing</h4><p>Google Ads, Instagram/FB ads, SEO, TikTok, influencer</p></div>
+            <div class="marketing-card"><h4>🎁 Loyalty Program</h4><p>Point pembelian, undian berhadiah, gift top buyer</p></div>
         </div>
         <div style="margin-top: 16px; background: #E6F0F5; border-radius: 18px; padding: 8px 14px; font-size:0.75rem;">
-            💡 <strong>Strategi Integrasi:</strong> Kombinasi in-store promo dan brand awareness akan didukung program digital marketing serta kerjasama dengan developer untuk mendongkrak sell-out sesuai target progresif.
+            💡 <strong>Strategi Integrasi:</strong> Kombinasi in-store promo, brand awareness, digital marketing, dan kerjasama developer untuk mencapai target progresif.
         </div>
     </div>
 
-    <!-- SKEMA PENGEMBALIAN DEPOSIT Rp200.000.000 (UPDATE NOMINAL & VERSI) -->
+    <!-- SKEMA DEPOSIT -->
     <div class="card">
         <div><span class="badge">💰 SKEMA PENGEMBALIAN DEPOSIT</span> <strong>Rp200.000.000 (Tiga Skema Integrasi)</strong></div>
         <div class="deposit-grid">
-            <!-- SKEMA 1: VERSI JOTUN (bertahap) -->
             <div class="deposit-card">
                 <h3>📌 Skema 1: Versi Jotun (Bertahap)</h3>
                 <p>Deposit dikembalikan setiap tahun sesuai pencapaian target <strong>Sell-in</strong>:</p>
@@ -582,42 +594,36 @@
                     <li><strong>Tahun 3 (2028-2029)</strong> : Rp66.666.667</li>
                 </ul>
                 <div class="amount" style="font-size: 1.2rem; margin-top: 10px;">Total deposit kembali: Rp200.000.000</div>
-                <div class="note">✅ Syarat: pencapaian target sell-in tahunan sesuai kontrak (tanpa prorata).</div>
+                <div class="note">✅ Syarat: pencapaian target sell-in tahunan sesuai kontrak.</div>
             </div>
-
-            <!-- SKEMA 2: VERSI NEGOSIASI (persentase dari pencapaian akhir) -->
             <div class="deposit-card" style="border-left-color: #1F7A8C; background: #eef7f9;">
                 <h3 style="color: #0B4F6C;">🤝 Skema 2: Versi Negosiasi (% Pencapaian)</h3>
                 <p>Perhitungan deposit kembali berdasarkan persentase pencapaian total sell-in 3 tahun.</p>
                 <div style="background:#ffffff; border-radius:16px; padding:8px; margin:10px 0; font-size: 0.75rem; border: 1px solid #dcdff2;">
                     <strong>Rumus:</strong> Deposit Kembali = (Total Sell-in tercapai / Target total) × Rp200.000.000
                 </div>
-                <p style="font-size: 0.75rem;"><strong>Koefisien dasar:</strong> Rp200.000.000 / Rp5.250.000.000 = <strong>3,8%</strong> dari total sell-in.</p>
+                <p style="font-size: 0.75rem;"><strong>Koefisien dasar:</strong> 3,8% dari total sell-in.</p>
                 <div style="background:#fff3e0; border-radius:12px; padding:8px; margin-top:8px; font-size: 0.75rem;">
-                    📊 <strong>Contoh Negosiasi:</strong> Jika pencapaian sell-in 3 tahun = 80% dari target (Rp4.200.000.000)<br>
-                    → Deposit kembali = 80% × Rp200.000.000 = <strong style="color:#c75119; font-size: 1rem;">Rp160.000.000</strong><br>
-                    <span>(Sisa Rp40.000.000 tidak dikembalikan / dinegosiasikan ulang)</span>
+                    📊 Contoh: pencapaian 80% → deposit kembali Rp160.000.000
                 </div>
-                <div class="note" style="margin-top:12px;">✅ Fleksibel: Semakin tinggi pencapaian, semakin besar deposit kembali (maksimal 100% = Rp200jt).</div>
+                <div class="note" style="margin-top:12px;">✅ Fleksibel: semakin tinggi pencapaian, semakin besar deposit kembali.</div>
             </div>
-
-            <!-- SKEMA 3: TOTAL ACHIEVEMENT TARGET 100% -->
             <div class="deposit-card" style="border-left-color: #2ca74d; background: #f0faf2;">
                 <h3 style="color: #1b6e30;">🎯 Skema 3: Total Achievement Akhir</h3>
-                <p>Ketentuan pengembalian penuh bersyarat pada akhir tahun ketiga:</p>
+                <p>Pengembalian penuh bersyarat pada akhir tahun ketiga:</p>
                 <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.75rem; line-height: 1.6;">
-                    <li><strong>Total Sell-in 3 tahun (excl PPN):</strong> Rp5.250.000.000</li>
-                    <li><strong>Total Sell-out 3 tahun (incl PPN):</strong> Rp6.600.000.000</li>
+                    <li><strong>Total Sell-in 3 tahun:</strong> Rp5.250.000.000</li>
+                    <li><strong>Total Sell-out 3 tahun:</strong> Rp6.600.000.000</li>
                 </ul>
                 <div style="background: #ffffff; border-radius: 12px; padding: 10px; border: 1px solid #ccebd5; margin-top: 10px; font-weight: bold; color: #1b6e30; text-align: center; font-size: 0.8rem;">
-                    🏆 Deposit akan dikembalikan PENUH (100% = Rp200.000.000) jika Total Achievement kumulatif mencapai 100%.
+                    🏆 Deposit dikembalikan PENUH jika Total Achievement kumulatif mencapai 100%.
                 </div>
-                <div class="note" style="margin-top:12px; color: #406b4d;">✅ Menjamin kepastian dana kembali seiring komitmen target jangka panjang tercapai sempurna.</div>
+                <div class="note" style="margin-top:12px;">✅ Menjamin kepastian dana kembali seiring komitmen target tercapai.</div>
             </div>
         </div>
     </div>
 
-    <!-- IFRAME terpisah dengan gaya menyatu -->
+    <!-- IFRAME -->
     <div class="iframe-card">
         <div style="margin-bottom: 12px;"><span class="badge">📊 DASHBOARD EKSTERNAL</span> <strong>Live Data & Monitoring</strong></div>
         <div class="iframe-wrapper">
@@ -629,7 +635,7 @@
             </iframe>
         </div>
         <div style="margin-top: 8px; font-size: 0.7rem; color: #5a7b8c; text-align: center;">
-            🔄 Data real-time dari sistem eksternal – jika tidak muncul, pastikan koneksi internet aktif.
+            🔄 Data real-time dari sistem eksternal – pastikan koneksi internet aktif.
         </div>
     </div>
 
@@ -643,11 +649,11 @@
             <div style="flex:1.5; background:#d9e9f0; border-radius:20px; padding:12px 16px;">
                 <h3 style="margin:0 0 8px 0;">📌 Kesimpulan Strategis</h3>
                 <ul style="margin:0; padding-left:1.2rem; font-size:0.75rem;">
-                    <li>Total Sell-in 3 tahun (excl PPN): Rp5,25 Miliar → Rp5.250.000.000</li>
-                    <li>Total Sell-out 3 tahun (incl PPN): Rp6,60 Miliar → Rp6.600.000.000</li>
-                    <li>Rasio Sell-out / Sell-in = 1,257 → permintaan 25,7% di atas pasokan</li>
-                    <li>Target bulanan meningkat dari Rp145,8 juta (awal) hingga Rp275,0 juta (akhir)</li>
-                    <li>Skema deposit Rp200.000.000 diatur proporsional 3,8% dari total sell-in, mendorong pencapaian 100% di akhir periode agar kembali utuh.</li>
+                    <li>Total Sell-in 3 tahun (excl PPN): Rp5,25 Miliar</li>
+                    <li>Total Sell-out 3 tahun (incl PPN): Rp6,60 Miliar</li>
+                    <li>Rasio Sell-out / Sell-in = 1,257 (permintaan 25,7% di atas pasokan)</li>
+                    <li>Target bulanan meningkat dari Rp145,8 juta menjadi Rp275,0 juta</li>
+                    <li>Skema deposit Rp200.000.000 diatur proporsional 3,8% dari total sell-in</li>
                 </ul>
             </div>
         </div>
@@ -658,22 +664,20 @@
 
 <script>
     (function() {
+        // Data awal (tidak diubah)
         const sellInYear1 = 1500000000;
         const sellInYear2 = 1750000000;
         const sellInYear3 = 2000000000;
-        const totalSellIn = sellInYear1 + sellInYear2 + sellInYear3; // 5.250.000.000
-        
+        const totalSellIn = sellInYear1 + sellInYear2 + sellInYear3;
         const sellOutMonthYear1 = 150000000;
         const sellOutMonthYear2 = 180000000;
         const sellOutMonthYear3 = 220000000;
-        const totalSellOut = (sellOutMonthYear1 * 12) + (sellOutMonthYear2 * 12) + (sellOutMonthYear3 * 12); // 6.600.000.000
-        
+        const totalSellOut = (sellOutMonthYear1 * 12) + (sellOutMonthYear2 * 12) + (sellOutMonthYear3 * 12);
         const semesterComposition = [0.05, 0.10, 0.15, 0.20, 0.25, 0.25];
         const semesterNames = [
             "Semester 2 - 2026", "Semester 1 - 2027", "Semester 2 - 2027",
             "Semester 1 - 2028", "Semester 2 - 2028", "Semester 1 - 2029"
         ];
-        
         let semesterTargets = [];
         for (let i=0; i<semesterComposition.length; i++) {
             let pct = semesterComposition[i];
@@ -690,9 +694,7 @@
                 selloutPerBulan: selloutPerBulan
             });
         }
-        
         const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-        
         const semesterPeriods = [
             { startYear:2026, startMonth:6, endYear:2026, endMonth:11, semIdx:0 },
             { startYear:2027, startMonth:0, endYear:2027, endMonth:5, semIdx:1 },
@@ -701,7 +703,6 @@
             { startYear:2028, startMonth:6, endYear:2028, endMonth:11, semIdx:4 },
             { startYear:2029, startMonth:0, endYear:2029, endMonth:5, semIdx:5 }
         ];
-        
         let monthlyData = [];
         for (let period of semesterPeriods) {
             const sem = semesterTargets[period.semIdx];
@@ -726,7 +727,7 @@
                 if (year > period.endYear || (year === period.endYear && month > period.endMonth)) break;
             }
         }
-        
+
         // Tabel semester
         const semesterTargetBody = document.getElementById('semesterTargetBody');
         semesterTargetBody.innerHTML = '';
@@ -739,8 +740,8 @@
             row.insertCell(4).innerHTML = `Rp ${s.sellinPerBulan.toLocaleString('id-ID')}`;
             row.insertCell(5).innerHTML = `Rp ${s.selloutPerBulan.toLocaleString('id-ID')}`;
         });
-        
-        // Chart Trend
+
+        // Trend Chart
         const labels = monthlyData.map(d => d.label.substring(0,7));
         const ctx = document.getElementById('trendChart').getContext('2d');
         new Chart(ctx, {
@@ -759,7 +760,7 @@
                           x: { ticks: { rotation: 45, autoSkip: true, maxRotation: 45, font: { size: 8 } }, title: { text: 'Periode (Juli 2026 - Juni 2029)' } } }
             }
         });
-        
+
         // Tabel harian
         const dailyTbody = document.getElementById('dailyTableBody');
         dailyTbody.innerHTML = '';
@@ -772,7 +773,7 @@
             row.insertCell(4).innerHTML = `Rp ${Math.round(d.selloutMonthly).toLocaleString('id-ID')}`;
             row.insertCell(5).innerHTML = `<strong class="highlight-daily">Rp ${Math.round(d.selloutDaily).toLocaleString('id-ID')}</strong>`;
         });
-        
+
         // Ringkasan semester
         const semesterMap = new Map();
         monthlyData.forEach(d => {
@@ -800,7 +801,7 @@
         totalRow.insertCell(0).innerHTML = "<strong>TOTAL 36 BULAN</strong>";
         totalRow.insertCell(1).innerHTML = `<strong>Rp ${Math.round(totalSellInCalc).toLocaleString('id-ID')}</strong>`;
         totalRow.insertCell(2).innerHTML = `<strong>Rp ${Math.round(totalSellOutCalc).toLocaleString('id-ID')}</strong>`;
-        
+
         // Insight grid
         const insightGrid = document.getElementById('insightGrid');
         insightGrid.innerHTML = '';
@@ -819,24 +820,21 @@
         const i4 = document.createElement('div'); i4.className='insight-card';
         i4.innerHTML = `<h3>🏆 Puncak Harian</h3><p>${maxItem.monthName} ${maxItem.year}: Rp ${Math.round(maxDaily).toLocaleString('id-ID')}/hari</p>`;
         insightGrid.appendChild(i4);
-        
+
         const footer = document.getElementById('dynamicFooter');
         const totalDays = monthlyData.reduce((s,d)=>s+d.daysInMonth,0);
         footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Skema deposit Rp200.000.000: bertahap, negosiasi % pencapaian, atau pengembalian penuh bersyarat target akhir 100%.`;
 
-        // ====== KOMPOSISI PENJUALAN (DIPERBAIKI) ======
+        // ====== KOMPOSISI PENJUALAN (doughnut, bar, scatter) ======
         const totalPenjualan = 15798900650;
-        // Data persentase yang benar (total 100%)
         const tokoData = [
             { nama: 'GrandMitra Bangunan PIK2', persen: 23.5 },
             { nama: 'Mitra Bangunan Cipta', persen: 26.5 },
             { nama: 'Mitra Bangunan', persen: 18.5 },
             { nama: 'Toko Cat Mitra', persen: 31.5 }
         ];
-        // Hitung nilai masing-masing toko (langsung dari persentase)
         const nilaiToko = tokoData.map(t => (t.persen / 100) * totalPenjualan);
 
-        // Isi tabel komposisi
         const compBody = document.getElementById('compTableBody');
         compBody.innerHTML = '';
         tokoData.forEach((t, i) => {
@@ -846,139 +844,136 @@
             row.insertCell(2).innerHTML = `Rp ${Math.round(nilaiToko[i]).toLocaleString('id-ID')}`;
         });
 
-        // Doughnut Chart
-        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
-        new Chart(doughnutCtx, {
+        // Doughnut
+        new Chart(document.getElementById('doughnutChart').getContext('2d'), {
             type: 'doughnut',
             data: {
                 labels: tokoData.map(t => t.nama),
-                datasets: [{
-                    data: nilaiToko,
-                    backgroundColor: ['#1F7A8C', '#2C6E9B', '#E68A2E', '#c75119'],
-                    borderWidth: 1,
-                }]
+                datasets: [{ data: nilaiToko, backgroundColor: ['#1F7A8C','#2C6E9B','#E68A2E','#c75119'], borderWidth: 1 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: true,
+                responsive: true, maintainAspectRatio: true,
                 plugins: {
                     legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 9 } } },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.label || '';
-                                let value = context.parsed;
-                                let total = context.dataset.data.reduce((a,b) => a + b, 0);
-                                let percentage = ((value / total) * 100).toFixed(2);
-                                return label + ': Rp ' + value.toLocaleString('id-ID') + ' (' + percentage + '%)';
-                            }
-                        }
-                    }
+                    tooltip: { callbacks: { label: function(context) {
+                        let total = context.dataset.data.reduce((a,b)=>a+b,0);
+                        return context.label + ': Rp ' + context.parsed.toLocaleString('id-ID') + ' (' + ((context.parsed/total)*100).toFixed(2) + '%)';
+                    }}}
                 },
-                cutout: '60%',
+                cutout: '60%'
             }
         });
 
-        // Bar Chart
-        const barCtx = document.getElementById('barChart').getContext('2d');
-        new Chart(barCtx, {
+        // Bar
+        new Chart(document.getElementById('barChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: tokoData.map(t => t.nama),
-                datasets: [{
-                    label: 'Nilai Penjualan (Rp)',
-                    data: nilaiToko,
-                    backgroundColor: ['#1F7A8C', '#2C6E9B', '#E68A2E', '#c75119'],
-                    borderRadius: 6,
-                }]
+                datasets: [{ label: 'Nilai Penjualan (Rp)', data: nilaiToko, backgroundColor: ['#1F7A8C','#2C6E9B','#E68A2E','#c75119'], borderRadius: 6 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return 'Rp ' + context.raw.toLocaleString('id-ID');
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return 'Rp ' + (value / 1e6).toFixed(0) + 'jt';
-                            }
-                        }
-                    }
-                }
+                responsive: true, maintainAspectRatio: true,
+                plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => 'Rp ' + ctx.raw.toLocaleString('id-ID') } } },
+                scales: { y: { beginAtZero: true, ticks: { callback: (val) => 'Rp ' + (val/1e6).toFixed(0) + 'jt' } } }
             }
         });
 
-        // Scatter Plot
-        const scatterCtx = document.getElementById('scatterChart').getContext('2d');
-        const scatterData = tokoData.map((t, i) => ({
-            x: i + 1,
-            y: nilaiToko[i],
-            label: t.nama
-        }));
-
-        new Chart(scatterCtx, {
+        // Scatter
+        new Chart(document.getElementById('scatterChart').getContext('2d'), {
             type: 'scatter',
             data: {
                 datasets: [{
                     label: 'Nilai Penjualan per Toko',
-                    data: scatterData,
-                    backgroundColor: '#1F7A8C',
-                    borderColor: '#0B4F6C',
-                    pointRadius: 8,
-                    pointHoverRadius: 12,
+                    data: tokoData.map((t,i) => ({ x: i+1, y: nilaiToko[i], label: t.nama })),
+                    backgroundColor: '#1F7A8C', borderColor: '#0B4F6C', pointRadius: 8, pointHoverRadius: 12
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let point = context.raw;
-                                return point.label + ': Rp ' + point.y.toLocaleString('id-ID');
-                            }
-                        }
-                    }
-                },
+                responsive: true, maintainAspectRatio: true,
+                plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => ctx.raw.label + ': Rp ' + ctx.raw.y.toLocaleString('id-ID') } } },
                 scales: {
-                    x: {
-                        type: 'linear',
-                        min: 0,
-                        max: 5,
-                        ticks: {
-                            stepSize: 1,
-                            callback: function(value) {
-                                if (value >= 1 && value <= 4) {
-                                    return tokoData[value - 1].nama.substring(0, 15) + '…';
-                                }
-                                return '';
-                            }
-                        },
-                        title: { display: true, text: 'Lokasi Toko' }
-                    },
-                    y: {
-                        title: { display: true, text: 'Nilai Penjualan (Rp)' },
-                        ticks: {
-                            callback: function(value) {
-                                return 'Rp ' + (value / 1e6).toFixed(0) + 'jt';
-                            }
-                        }
-                    }
+                    x: { type: 'linear', min: 0, max: 5, ticks: { stepSize: 1, callback: (val) => val>=1&&val<=4 ? tokoData[val-1].nama.substring(0,15)+'…' : '' }, title: { display: true, text: 'Lokasi Toko' } },
+                    y: { title: { display: true, text: 'Nilai Penjualan (Rp)' }, ticks: { callback: (val) => 'Rp ' + (val/1e6).toFixed(0) + 'jt' } }
                 }
             }
         });
+
+        // ====== ALOKASI JOTUN 36 BULAN ======
+        const targetJotun = 6600000000;
+        // Data dari gambar
+        const tokoAlokasi = [
+            { nama: 'GrandMitra Bangunan PIK2', kontribusi: 23.5, sellOutAktual: 3712741653 },
+            { nama: 'Mitra Bangunan Cipta', kontribusi: 26.5, sellOutAktual: 4186708672 },
+            { nama: 'Mitra Bangunan', kontribusi: 18.5, sellOutAktual: 2922796620 },
+            { nama: 'Toko Cat Mitra', kontribusi: 31.5, sellOutAktual: 4976653705 }
+        ];
+        // Hitung alokasi Jotun per toko berdasarkan persentase kontribusi
+        const alokasiData = tokoAlokasi.map(t => {
+            const alokasiTotal = (t.kontribusi / 100) * targetJotun;
+            const alokasiPerBulan = alokasiTotal / 36;
+            return {
+                ...t,
+                alokasiTotal: alokasiTotal,
+                alokasiPerBulan: alokasiPerBulan,
+                sellOutPerBulan: t.sellOutAktual / 16 // karena periode Mar'25 - Jun'26 = 16 bulan (asumsi)
+            };
+        });
+
+        // Isi tabel alokasi
+        const alokasiBody = document.getElementById('alokasiTableBody');
+        alokasiBody.innerHTML = '';
+        alokasiData.forEach(t => {
+            const row = alokasiBody.insertRow();
+            row.insertCell(0).innerText = t.nama;
+            row.insertCell(1).innerText = t.kontribusi.toFixed(1) + '%';
+            row.insertCell(2).innerHTML = `Rp ${Math.round(t.sellOutPerBulan).toLocaleString('id-ID')}`;
+            row.insertCell(3).innerHTML = `Rp ${Math.round(t.alokasiTotal).toLocaleString('id-ID')}`;
+            row.insertCell(4).innerHTML = `Rp ${Math.round(t.alokasiPerBulan).toLocaleString('id-ID')}`;
+            row.insertCell(5).innerText = t.kontribusi.toFixed(1) + '%';
+        });
+
+        // Bar chart perbandingan Sell Out Aktual/Month vs Alokasi Jotun/Bulan
+        new Chart(document.getElementById('alokasiBarChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: alokasiData.map(t => t.nama),
+                datasets: [
+                    { label: 'Sell Out Aktual/Month', data: alokasiData.map(t => t.sellOutPerBulan), backgroundColor: '#2C6E9B', borderRadius: 4 },
+                    { label: 'Alokasi Jotun/Bulan', data: alokasiData.map(t => t.alokasiPerBulan), backgroundColor: '#E68A2E', borderRadius: 4 }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: true,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { size: 9 } } },
+                    tooltip: { callbacks: { label: (ctx) => ctx.dataset.label + ': Rp ' + ctx.raw.toLocaleString('id-ID') } }
+                },
+                scales: {
+                    y: { beginAtZero: true, ticks: { callback: (val) => 'Rp ' + (val/1e6).toFixed(0) + 'jt' } }
+                }
+            }
+        });
+
+        // Doughnut proporsi alokasi
+        new Chart(document.getElementById('alokasiDoughnutChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: alokasiData.map(t => t.nama),
+                datasets: [{ data: alokasiData.map(t => t.alokasiTotal), backgroundColor: ['#1F7A8C','#2C6E9B','#E68A2E','#c75119'], borderWidth: 1 }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: true,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 9 } } },
+                    tooltip: { callbacks: { label: function(context) {
+                        let total = context.dataset.data.reduce((a,b)=>a+b,0);
+                        return context.label + ': Rp ' + context.parsed.toLocaleString('id-ID') + ' (' + ((context.parsed/total)*100).toFixed(1) + '%)';
+                    }}}
+                },
+                cutout: '60%'
+            }
+        });
+
     })();
 </script>
 </body>
