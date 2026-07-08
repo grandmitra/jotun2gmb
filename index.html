@@ -6,374 +6,69 @@
     <title>Jotun Dealer · Target 36 Bulan + Marketing Plan + Skema Deposit</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-        }
-        body {
-            background: #f0f4f8;
-            margin: 0;
-            padding: 16px 12px;
-            color: #1a2c3e;
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .header-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 12px;
-        }
-        .logo {
-            height: 50px;
-            width: auto;
-            object-fit: contain;
-        }
-        .title-area {
-            flex: 1;
-        }
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-            background: linear-gradient(135deg, #0B4F6C, #1F7A8C);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .subhead {
-            color: #2c5f6e;
-            border-left: 4px solid #1F7A8C;
-            padding-left: 14px;
-            margin: 6px 0 0;
-            font-weight: 500;
-            font-size: 0.85rem;
-        }
-        .expectation-desc {
-            background: #e9f2f5;
-            border-radius: 18px;
-            padding: 8px 14px;
-            margin-top: 10px;
-            font-size: 0.75rem;
-            color: #0c4e62;
-        }
-        .card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            padding: 1.2rem 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .image-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        .image-card {
-            flex: 1;
-            min-width: 220px;
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-        .image-card a {
-            display: block;
-        }
-        .image-card img {
-            width: 100%;
-            max-height: 220px;
-            object-fit: contain;
-            border-radius: 16px;
-            background: #f8fafc;
-            border: 1px solid #e2edf2;
-        }
-        .image-card .caption {
-            margin-top: 8px;
-            font-weight: 600;
-            color: #0B4F6C;
-            font-size: 0.7rem;
-        }
-        .badge {
-            background: #1F7A8C20;
-            color: #0e5b6b;
-            border-radius: 40px;
-            padding: 4px 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .gantt-container {
-            overflow-x: auto;
-            margin-top: 16px;
-        }
-        .gantt-row {
-            display: flex;
-            align-items: center;
-            margin: 8px 0;
-            border-bottom: 1px solid #e2edf2;
-            padding: 6px 0;
-        }
-        .gantt-label {
-            width: 200px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #1F7A8C;
-            flex-shrink: 0;
-        }
-        .gantt-bar-wrapper {
-            flex: 1;
-            background: #e9ecef;
-            border-radius: 20px;
-            height: 32px;
-            position: relative;
-        }
-        .gantt-bar {
-            background: #2C6E9B;
-            height: 32px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-left: 12px;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .timeline-header {
-            display: flex;
-            margin-left: 200px;
-            gap: 0;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 6px;
-            font-size: 0.65rem;
-            font-weight: 600;
-        }
-        .timeline-week {
-            flex: 1;
-            text-align: center;
-        }
-        .marketing-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 16px;
-        }
-        .marketing-card {
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 12px;
-            flex: 1 1 200px;
-            border: 1px solid #dce7ef;
-        }
-        .marketing-card h4 {
-            margin: 0 0 6px 0;
-            color: #1F7A8C;
-            font-size: 0.85rem;
-        }
-        .marketing-card p {
-            margin: 0;
-            font-size: 0.7rem;
-            color: #2c5f6e;
-        }
-        .deposit-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 16px;
-        }
-        .deposit-card {
-            flex: 1;
-            min-width: 260px;
-            background: #fef7e0;
-            border-radius: 20px;
-            padding: 16px;
-            border-left: 8px solid #E68A2E;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .deposit-card h3 {
-            margin: 0 0 12px 0;
-            color: #b45f1b;
-            font-size: 1.1rem;
-        }
-        .deposit-card .amount {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #1F7A8C;
-        }
-        .deposit-card .note {
-            font-size: 0.7rem;
-            color: #5a6e7a;
-            margin-top: 10px;
-        }
-        .table-wrapper {
-            overflow-x: auto;
-            border-radius: 20px;
-            border: 1px solid #e2e8f0;
-            background: white;
-            margin-top: 16px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.72rem;
-            min-width: 650px;
-        }
-        th {
-            background: #1F7A8C;
-            color: white;
-            padding: 8px 5px;
-            text-align: center;
-        }
-        td {
-            padding: 6px 4px;
-            text-align: right;
-            border-bottom: 1px solid #e9edf2;
-        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }
+        body { background: #f0f4f8; margin: 0; padding: 16px 12px; color: #1a2c3e; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+        .logo { height: 50px; width: auto; object-fit: contain; }
+        .title-area { flex: 1; }
+        h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 6px 0; background: linear-gradient(135deg, #0B4F6C, #1F7A8C); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .subhead { color: #2c5f6e; border-left: 4px solid #1F7A8C; padding-left: 14px; margin: 6px 0 0; font-weight: 500; font-size: 0.85rem; }
+        .expectation-desc { background: #e9f2f5; border-radius: 18px; padding: 8px 14px; margin-top: 10px; font-size: 0.75rem; color: #0c4e62; }
+        .card { background: white; border-radius: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); padding: 1.2rem 1rem; margin-bottom: 1.5rem; }
+        .image-panel { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
+        .image-card { flex: 1; min-width: 220px; background: #ffffff; border-radius: 20px; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; }
+        .image-card a { display: block; }
+        .image-card img { width: 100%; max-height: 220px; object-fit: contain; border-radius: 16px; background: #f8fafc; border: 1px solid #e2edf2; }
+        .image-card .caption { margin-top: 8px; font-weight: 600; color: #0B4F6C; font-size: 0.7rem; }
+        .badge { background: #1F7A8C20; color: #0e5b6b; border-radius: 40px; padding: 4px 12px; font-size: 0.7rem; font-weight: 600; display: inline-block; }
+        .gantt-container { overflow-x: auto; margin-top: 16px; }
+        .gantt-row { display: flex; align-items: center; margin: 8px 0; border-bottom: 1px solid #e2edf2; padding: 6px 0; }
+        .gantt-label { width: 200px; font-size: 0.75rem; font-weight: 600; color: #1F7A8C; flex-shrink: 0; }
+        .gantt-bar-wrapper { flex: 1; background: #e9ecef; border-radius: 20px; height: 32px; position: relative; }
+        .gantt-bar { background: #2C6E9B; height: 32px; border-radius: 20px; display: flex; align-items: center; justify-content: flex-start; padding-left: 12px; color: white; font-size: 0.7rem; font-weight: bold; white-space: nowrap; }
+        .timeline-header { display: flex; margin-left: 200px; gap: 0; border-bottom: 1px solid #ccc; margin-bottom: 6px; font-size: 0.65rem; font-weight: 600; }
+        .timeline-week { flex: 1; text-align: center; }
+        .marketing-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .marketing-card { background: #f8fafc; border-radius: 20px; padding: 12px; flex: 1 1 200px; border: 1px solid #dce7ef; }
+        .marketing-card h4 { margin: 0 0 6px 0; color: #1F7A8C; font-size: 0.85rem; }
+        .marketing-card p { margin: 0; font-size: 0.7rem; color: #2c5f6e; }
+        .deposit-grid { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 16px; }
+        .deposit-card { flex: 1; min-width: 260px; background: #fef7e0; border-radius: 20px; padding: 16px; border-left: 8px solid #E68A2E; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .deposit-card h3 { margin: 0 0 12px 0; color: #b45f1b; font-size: 1.1rem; }
+        .deposit-card .amount { font-size: 1.4rem; font-weight: bold; color: #1F7A8C; }
+        .deposit-card .note { font-size: 0.7rem; color: #5a6e7a; margin-top: 10px; }
+        .table-wrapper { overflow-x: auto; border-radius: 20px; border: 1px solid #e2e8f0; background: white; margin-top: 16px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.72rem; min-width: 650px; }
+        th { background: #1F7A8C; color: white; padding: 8px 5px; text-align: center; }
+        td { padding: 6px 4px; text-align: right; border-bottom: 1px solid #e9edf2; }
         td:first-child, th:first-child { text-align: left; padding-left: 10px; }
         td:first-child { font-weight: 500; }
-        .highlight-daily {
-            font-weight: 700;
-            color: #c75119;
-        }
-        .chart-container {
-            height: 340px;
-            width: 100%;
-            margin: 0.5rem 0;
-        }
-        .insight-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin: 20px 0 5px;
-        }
-        .insight-card {
-            background: #eef2f7;
-            border-radius: 18px;
-            flex: 1 1 220px;
-            padding: 0.8rem 1rem;
-            border-left: 4px solid #1F7A8C;
-        }
-        .insight-card h3 {
-            margin: 0 0 6px 0;
-            font-size: 0.9rem;
-            color: #0B4F6C;
-        }
-        .insight-card p {
-            margin: 0;
-            font-size: 0.8rem;
-        }
-        .footer-note {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 0.68rem;
-            color: #5a7b8c;
-        }
-
-        .iframe-card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            padding: 1.2rem 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #f8fafc;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e2edf2;
-        }
-        .iframe-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .maps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        .map-box {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 10px;
-            border: 1px solid #e2edf2;
-        }
-        .map-box h4 {
-            margin: 0 0 8px 0;
-            color: #0B4F6C;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .map-container {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .chart-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 16px;
-        }
-        .chart-box {
-            flex: 1 1 280px;
-            min-width: 220px;
-        }
-        .chart-box canvas {
-            max-height: 280px;
-            max-width: 100%;
-        }
-        .comp-table {
-            margin-top: 16px;
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-        .comp-table th {
-            background: #0B4F6C;
-            color: white;
-            padding: 8px;
-            text-align: center;
-        }
-        .comp-table td {
-            padding: 6px 8px;
-            border-bottom: 1px solid #e2edf2;
-            text-align: right;
-        }
-        .comp-table td:first-child {
-            text-align: left;
-            font-weight: 600;
-        }
-
+        .highlight-daily { font-weight: 700; color: #c75119; }
+        .chart-container { height: 340px; width: 100%; margin: 0.5rem 0; }
+        .insight-grid { display: flex; flex-wrap: wrap; gap: 14px; margin: 20px 0 5px; }
+        .insight-card { background: #eef2f7; border-radius: 18px; flex: 1 1 220px; padding: 0.8rem 1rem; border-left: 4px solid #1F7A8C; }
+        .insight-card h3 { margin: 0 0 6px 0; font-size: 0.9rem; color: #0B4F6C; }
+        .insight-card p { margin: 0; font-size: 0.8rem; }
+        .footer-note { text-align: center; margin-top: 25px; font-size: 0.68rem; color: #5a7b8c; }
+        .iframe-card { background: white; border-radius: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); padding: 1.2rem 1rem; margin-bottom: 1.5rem; }
+        .iframe-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #f8fafc; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2edf2; }
+        .iframe-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .maps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+        .map-box { background: #f8fafc; border-radius: 16px; padding: 10px; border: 1px solid #e2edf2; }
+        .map-box h4 { margin: 0 0 8px 0; color: #0B4F6C; font-size: 0.8rem; font-weight: 600; }
+        .map-container { position: relative; width: 100%; height: 200px; border-radius: 12px; overflow: hidden; }
+        .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .chart-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 16px; }
+        .chart-box { flex: 1 1 280px; min-width: 220px; }
+        .chart-box canvas { max-height: 280px; max-width: 100%; }
+        .comp-table { margin-top: 16px; width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .comp-table th { background: #0B4F6C; color: white; padding: 8px; text-align: center; }
+        .comp-table td { padding: 6px 8px; border-bottom: 1px solid #e2edf2; text-align: right; }
+        .comp-table td:first-child { text-align: left; font-weight: 600; }
+        .branding-card { background: #e2f0f5; border-radius: 20px; padding: 16px; border: 2px solid #1F7A8C; margin: 16px 0; }
+        .branding-card h3 { margin: 0 0 8px 0; color: #0B4F6C; }
+        .branding-card .amount { font-size: 1.8rem; font-weight: 700; color: #c75119; }
         @media (max-width: 640px) {
             .gantt-label { width: 160px; }
             .timeline-header { margin-left: 160px; }
@@ -390,10 +85,12 @@
         <img class="logo" src="https://grandmitra.com/wp-content/uploads/2024/09/gm.png" alt="Logo Grand Mitra" onerror="this.style.display='none'">
         <div class="title-area">
             <h1>🎯 Jotun Dealer Target 36 Bulan (2026-2029)</h1>
-            <div class="subhead">Sell-in exclude PPN · Sell-out include PPN | Progresif per semester | Mulai Semester 2-2026</div>
+            <div class="subhead">Sell‑in Include PPN · Sell‑out include PPN | Komposisi khusus per semester | Mulai September 2026</div>
             <div class="expectation-desc">
-                📊 <strong>Total Sell-in 3 tahun (excl PPN):</strong> Rp5.250.000.000 | <strong>Total Sell-out 3 tahun (incl PPN):</strong> Rp6.600.000.000<br>
-                ✅ Komposisi semester: 5% → 10% → 15% → 20% → 25% → 25% | Periode: Juli 2026 – Juni 2029
+                📊 <strong>Total Sell‑in 3 tahun (inclPPN):</strong> Rp5.250.000.000 | <strong>Total Sell‑out 3 tahun (incl PPN):</strong> Rp6.540.000.000<br>
+                ✅ Komposisi Sell‑in: 14,29% → 14,29% → 16,67% → 16,67% → 19,05% → 19,05%<br>
+                ✅ Komposisi Sell‑out: 13,76% → 13,76% → 16,06% → 16,06% → 20,18% → 20,18%<br>
+                Periode: September 2026 – Agustus 2029
             </div>
         </div>
     </div>
@@ -437,13 +134,12 @@
             </div>
         </div>
 
-        <!-- KOMPOSISI PENJUALAN -->
+        <!-- KOMPOSISI PENJUALAN (tetap) -->
         <div style="margin-top: 28px; border-top: 2px dashed #dce7ef; padding-top: 20px;">
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
                 <span class="badge">💰 KOMPOSISI PENJUALAN</span>
                 <strong style="font-size: 1rem;">Total Rp 15.798.900.650</strong>
             </div>
-
             <div class="chart-row">
                 <div class="chart-box">
                     <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">🍩 Doughnut Chart</h4>
@@ -458,7 +154,6 @@
                     <canvas id="scatterChart" style="max-height: 280px;"></canvas>
                 </div>
             </div>
-
             <div class="table-wrapper" style="margin-top: 12px;">
                 <table class="comp-table" id="compTable">
                     <thead><tr><th>Lokasi Toko</th><th>Persentase</th><th>Nilai (Rp)</th></tr></thead>
@@ -473,7 +168,7 @@
 
     <!-- ===== KARTU ALOKASI JOTUN 36 BULAN ===== -->
     <div class="card">
-        <div><span class="badge">📊 ALOKASI JOTUN 36 BULAN</span> <strong>Target Rp6.600.000.000 dibagi proporsional ke 4 toko</strong></div>
+        <div><span class="badge">📊 ALOKASI JOTUN 36 BULAN</span> <strong>Target Rp6.540.000.000 dibagi proporsional ke 4 toko</strong></div>
         <div class="chart-row">
             <div class="chart-box">
                 <h4 style="margin: 0 0 8px 0; text-align: center; color: #0B4F6C;">Perbandingan Sell Out Aktual vs Target Jotun per Bulan</h4>
@@ -491,7 +186,7 @@
             </table>
         </div>
         <div style="margin-top:12px; background:#e9f2f5; padding:8px 14px; border-radius:16px; font-size:0.75rem;">
-            💡 Total Sell Out Aktual (Mar'25-Jun'26) = Rp15.798.900.650 · Target Jotun 36 bulan = Rp6.600.000.000
+            💡 Total Sell Out Aktual (Mar'25-Jun'26) = Rp15.798.900.650 · Target Jotun 36 bulan = Rp6.540.000.000
         </div>
     </div>
 
@@ -514,30 +209,30 @@
         </div>
     </div>
 
-    <!-- Project Plan Gantt Chart -->
+    <!-- Project Plan Gantt Chart – September 2026 -->
     <div class="card">
-        <div><span class="badge">📋 PROJECT PLAN PERSIAPAN JOTUN</span> <strong>Milestone menuju penjualan Juli 2026</strong></div>
+        <div><span class="badge">📋 PROJECT PLAN PERSIAPAN JOTUN</span> <strong>Milestone menuju penjualan September 2026</strong></div>
         <div class="gantt-container">
             <div class="timeline-header">
-                <div class="timeline-week">Mei M1</div><div class="timeline-week">Mei M2</div><div class="timeline-week">Mei M3</div><div class="timeline-week">Mei M4</div>
-                <div class="timeline-week">Jun M1</div><div class="timeline-week">Jun M2</div><div class="timeline-week">Jun M3</div><div class="timeline-week">Jul M1</div>
+                <div class="timeline-week">Jul M1</div><div class="timeline-week">Jul M2</div><div class="timeline-week">Jul M3</div><div class="timeline-week">Jul M4</div>
+                <div class="timeline-week">Agt M1</div><div class="timeline-week">Agt M2</div><div class="timeline-week">Agt M3</div><div class="timeline-week">Sep M1</div>
             </div>
-            <div class="gantt-row"><div class="gantt-label">1. Sign Agreement</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; background:#1F7A8C;">M1 Mei</div></div></div>
-            <div class="gantt-row"><div class="gantt-label">2. Pengajuan Design</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:12.5%; background:#2C6E9B;">M2 Mei</div></div></div>
-            <div class="gantt-row"><div class="gantt-label">3. Pembuatan Master Produk</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:25%; background:#4499aa;">M3 Mei</div></div></div>
-            <div class="gantt-row"><div class="gantt-label">4. Ordering</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:37.5%; background:#5ba0b0;">M4 Mei</div></div></div>
-            <div class="gantt-row"><div class="gantt-label">5. Pemasangan Display Mockup</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:50%; background:#1F7A8C;">M1 Jun</div></div></div>
-            <div class="gantt-row"><div class="gantt-label">6. Pendisplayan Brand Dagangan</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:62.5%; background:#2C6E9B;">M2 Jun</div></div></div>
-            <div class="gantt-row"><div class="gantt-label">7. Ready to Sales</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:87.5%; background:#E68A2E;">M1 Jul</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">1. Sign Agreement</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; background:#1F7A8C;">M1 Jul</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">2. Pengajuan Design</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:12.5%; background:#2C6E9B;">M2 Jul</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">3. Pembuatan Master Produk</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:25%; background:#4499aa;">M3 Jul</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">4. Ordering</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:37.5%; background:#5ba0b0;">M4 Jul</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">5. Pemasangan Display Mockup</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:50%; background:#1F7A8C;">M1 Agt</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">6. Pendisplayan Brand Dagangan</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:62.5%; background:#2C6E9B;">M2 Agt</div></div></div>
+            <div class="gantt-row"><div class="gantt-label">7. Ready to Sales</div><div class="gantt-bar-wrapper"><div class="gantt-bar" style="width:12.5%; margin-left:87.5%; background:#E68A2E;">M1 Sep</div></div></div>
         </div>
     </div>
 
-    <!-- Tabel Target Semester -->
+    <!-- Tabel Target Semester – dengan komposisi baru -->
     <div class="card">
-        <div><span class="badge">📅 TARGET PERSEMESTER (36 BULAN)</span> <strong>Sell-in & Sell-out sesuai data tahunan</strong></div>
+        <div><span class="badge">📅 TARGET PERSEMESTER (36 BULAN)</span> <strong>Sell‑in & Sell‑out dengan komposisi khusus</strong></div>
         <div class="table-wrapper">
             <table>
-                <thead><tr><th>Semester</th><th>Komposisi</th><th>Sell-in / Semester</th><th>Sell-out / Semester</th><th>Sell-in / Bulan</th><th>Sell-out / Bulan</th></tr></thead>
+                <thead><tr><th>Semester</th><th>% Sell‑in</th><th>% Sell‑out</th><th>Sell‑in / Semester</th><th>Sell‑out / Semester</th><th>Sell‑in / Bulan</th><th>Sell‑out / Bulan</th></tr></thead>
                 <tbody id="semesterTargetBody"></tbody>
             </table>
         </div>
@@ -545,7 +240,7 @@
 
     <!-- Chart Trend -->
     <div class="card">
-        <div><span class="badge">📈 TREND BULANAN</span> <strong>Sell-in (excl PPN) vs Sell-out (incl PPN)</strong></div>
+        <div><span class="badge">📈 TREND BULANAN</span> <strong>Sell‑in (inclPPN) vs Sell‑out (incl PPN)</strong></div>
         <div class="chart-container"><canvas id="trendChart"></canvas></div>
         <div class="insight-grid" id="insightGrid"></div>
     </div>
@@ -555,17 +250,17 @@
         <div><span class="badge">📅 DETAIL BULANAN & HARIAN</span> <strong>Target per bulan & nilai harian (Rp)</strong></div>
         <div class="table-wrapper">
             <table id="dailyTable">
-                <thead><tr><th>Bulan - Tahun</th><th>Hari</th><th>Sell-in Bulanan</th><th>Sell-in Harian</th><th>Sell-out Bulanan</th><th>Sell-out Harian</th></tr></thead>
+                <thead><tr><th>Bulan - Tahun</th><th>Hari</th><th>Sell‑in Bulanan</th><th>Sell‑in Harian</th><th>Sell‑out Bulanan</th><th>Sell‑out Harian</th></tr></thead>
                 <tbody id="dailyTableBody"></tbody>
             </table>
         </div>
     </div>
 
-    <!-- MARKETING PLAN -->
+    <!-- MARKETING PLAN (existing) -->
     <div class="card">
         <div><span class="badge">🎯 MARKETING PLAN JOTUN</span> <strong>Strategi 36 bulan untuk mencapai target</strong></div>
         <div class="marketing-grid">
-            <div class="marketing-card"><h4>🏪 In-store Promo</h4><p>ATL, BTL, Billboard, PWP, GWP, POP display</p></div>
+            <div class="marketing-card"><h4>🏪 In‑store Promo</h4><p>ATL, BTL, Billboard, PWP, GWP, POP display</p></div>
             <div class="marketing-card"><h4>🧑‍🎨 Brand Awareness</h4><p>Gathering tukang, pameran proyek, workshop cat, kontes desain</p></div>
             <div class="marketing-card"><h4>📘 Product Knowledge</h4><p>Sertifikasi sales, demo produk, video tutorial, katalog teknis</p></div>
             <div class="marketing-card"><h4>📄 Sebar Brosur</h4><p>Flyer di toko material, selebaran proyek, digital brochure</p></div>
@@ -577,32 +272,43 @@
             <div class="marketing-card"><h4>🎁 Loyalty Program</h4><p>Point pembelian, undian berhadiah, gift top buyer</p></div>
         </div>
         <div style="margin-top: 16px; background: #E6F0F5; border-radius: 18px; padding: 8px 14px; font-size:0.75rem;">
-            💡 <strong>Strategi Integrasi:</strong> Kombinasi in-store promo, brand awareness, digital marketing, dan kerjasama developer untuk mencapai target progresif.
+            💡 <strong>Strategi Integrasi:</strong> Kombinasi in‑store promo, brand awareness, digital marketing, dan kerjasama developer untuk mencapai target progresif.
         </div>
     </div>
 
-    <!-- SKEMA DEPOSIT -->
+    <!-- TAMBAHAN: Dukungan Branding Jotun -->
+    <div class="card">
+        <div><span class="badge">🎨 DUKUNGAN BRANDING JOTUN</span> <strong>Partisipasi untuk Grandmitra</strong></div>
+        <div class="branding-card">
+            <h3>🤝 Jotun mendukung branding di Grandmitra</h3>
+            <p style="font-size:0.9rem; margin: 8px 0;">Nilai partisipasi yang diberikan oleh Jotun untuk keperluan <strong>branding, signage, dan aktivasi merek</strong> di area penjualan Grandmitra adalah:</p>
+            <div class="amount">Rp75.000.000 <span style="font-size:0.9rem; font-weight:normal; color:#0B4F6C;">(Include PPN)</span></div>
+            <p style="font-size:0.75rem; margin-top: 10px; color: #2c5f6e;">✅ Dana ini digunakan untuk pembuatan billboard, display interior, materi POP, dan campaign branding Jotun selama 12 bulan.</p>
+        </div>
+    </div>
+
+    <!-- SKEMA DEPOSIT + Klausul SPG/SPB -->
     <div class="card">
         <div><span class="badge">💰 SKEMA PENGEMBALIAN DEPOSIT</span> <strong>Rp200.000.000 (Tiga Skema Integrasi)</strong></div>
         <div class="deposit-grid">
             <div class="deposit-card">
                 <h3>📌 Skema 1: Versi Jotun (Bertahap)</h3>
-                <p>Deposit dikembalikan setiap tahun sesuai pencapaian target <strong>Sell-in</strong>:</p>
+                <p>Deposit dikembalikan setiap tahun sesuai pencapaian target <strong>Sell‑in</strong>:</p>
                 <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.8rem; line-height: 1.6;">
-                    <li><strong>Tahun 1 (2026-2027)</strong> : Rp66.666.667</li>
-                    <li><strong>Tahun 2 (2027-2028)</strong> : Rp66.666.667</li>
-                    <li><strong>Tahun 3 (2028-2029)</strong> : Rp66.666.667</li>
+                    <li><strong>Tahun 1 (2026-2027)</strong> : Rp70.000.000</li>
+                    <li><strong>Tahun 2 (2027-2028)</strong> : Rp70.000.000</li>
+                    <li><strong>Tahun 3 (2028-2029)</strong> : Rp60.000.000</li>
                 </ul>
                 <div class="amount" style="font-size: 1.2rem; margin-top: 10px;">Total deposit kembali: Rp200.000.000</div>
-                <div class="note">✅ Syarat: pencapaian target sell-in tahunan sesuai kontrak.</div>
+                <div class="note">✅ Syarat: pencapaian target sell‑in tahunan sesuai kontrak.</div>
             </div>
             <div class="deposit-card" style="border-left-color: #1F7A8C; background: #eef7f9;">
                 <h3 style="color: #0B4F6C;">🤝 Skema 2: Versi Negosiasi (% Pencapaian)</h3>
-                <p>Perhitungan deposit kembali berdasarkan persentase pencapaian total sell-in 3 tahun.</p>
+                <p>Perhitungan deposit kembali berdasarkan persentase pencapaian total sell‑in 3 tahun.</p>
                 <div style="background:#ffffff; border-radius:16px; padding:8px; margin:10px 0; font-size: 0.75rem; border: 1px solid #dcdff2;">
-                    <strong>Rumus:</strong> Deposit Kembali = (Total Sell-in tercapai / Target total) × Rp200.000.000
+                    <strong>Rumus:</strong> Deposit Kembali = (Total Sell‑in tercapai / Target total) × Rp200.000.000
                 </div>
-                <p style="font-size: 0.75rem;"><strong>Koefisien dasar:</strong> 3,8% dari total sell-in.</p>
+                <p style="font-size: 0.75rem;"><strong>Koefisien dasar:</strong> 3,8% dari total sell‑in.</p>
                 <div style="background:#fff3e0; border-radius:12px; padding:8px; margin-top:8px; font-size: 0.75rem;">
                     📊 Contoh: pencapaian 80% → deposit kembali Rp160.000.000
                 </div>
@@ -612,13 +318,21 @@
                 <h3 style="color: #1b6e30;">🎯 Skema 3: Total Achievement Akhir</h3>
                 <p>Pengembalian penuh bersyarat pada akhir tahun ketiga:</p>
                 <ul style="margin-top: 12px; padding-left: 1.2rem; font-size:0.75rem; line-height: 1.6;">
-                    <li><strong>Total Sell-in 3 tahun:</strong> Rp5.250.000.000</li>
-                    <li><strong>Total Sell-out 3 tahun:</strong> Rp6.600.000.000</li>
+                    <li><strong>Total Sell‑in 3 tahun:</strong> Rp5.250.000.000</li>
+                    <li><strong>Total Sell‑out 3 tahun:</strong> Rp6.540.000.000</li>
                 </ul>
                 <div style="background: #ffffff; border-radius: 12px; padding: 10px; border: 1px solid #ccebd5; margin-top: 10px; font-weight: bold; color: #1b6e30; text-align: center; font-size: 0.8rem;">
                     🏆 Deposit dikembalikan PENUH jika Total Achievement kumulatif mencapai 100%.
                 </div>
                 <div class="note" style="margin-top:12px;">✅ Menjamin kepastian dana kembali seiring komitmen target tercapai.</div>
+            </div>
+        </div>
+
+        <!-- KLAUSUL SPG/SPB -->
+        <div style="margin-top: 24px; border-top: 2px solid #dce7ef; padding-top: 16px;">
+            <span class="badge">🧑‍💼 SUPPORTING SPG/SPB</span>
+            <div style="background: #f4f9fc; border-radius: 16px; padding: 12px 16px; margin-top: 8px; font-size:0.8rem; border-left: 6px solid #1F7A8C;">
+                <strong>Klausul Perjanjian:</strong> JOTUN menyediakan <strong>tenaga penjualan (SPG/SPB)</strong> yang terlatih dan didedikasikan untuk produk Jotun selama Produk Jotun masih Terseia di Grandmitra, <strong>selama produk Jotun masih dijual</strong> di Grandmitra. SPG/SPB akan mendapatkan pelatihan product knowledge, insentif penjualan, dan monitoring rutin dari pihak Jotun untuk memastikan target penjualan tercapai.
             </div>
         </div>
     </div>
@@ -635,7 +349,7 @@
             </iframe>
         </div>
         <div style="margin-top: 8px; font-size: 0.7rem; color: #5a7b8c; text-align: center;">
-            🔄 Data real-time dari sistem eksternal – pastikan koneksi internet aktif.
+            🔄 Data real‑time dari sistem eksternal – pastikan koneksi internet aktif.
         </div>
     </div>
 
@@ -644,16 +358,18 @@
         <div style="display: flex; flex-wrap: wrap; gap: 20px;">
             <div style="flex:2; min-width:240px;">
                 <h3 style="margin:0 0 8px 0;">📆 Akumulasi per Semester</h3>
-                <div class="table-wrapper"><table id="summaryTable"><thead><tr><th>Semester</th><th>Total Sell-in</th><th>Total Sell-out</th></tr></thead><tbody id="semesterSummaryBody"></tbody></table></div>
+                <div class="table-wrapper"><table id="summaryTable"><thead><tr><th>Semester</th><th>Total Sell‑in</th><th>Total Sell‑out</th></tr></thead><tbody id="semesterSummaryBody"></tbody></table></div>
             </div>
             <div style="flex:1.5; background:#d9e9f0; border-radius:20px; padding:12px 16px;">
                 <h3 style="margin:0 0 8px 0;">📌 Kesimpulan Strategis</h3>
                 <ul style="margin:0; padding-left:1.2rem; font-size:0.75rem;">
-                    <li>Total Sell-in 3 tahun (excl PPN): Rp5,25 Miliar</li>
-                    <li>Total Sell-out 3 tahun (incl PPN): Rp6,60 Miliar</li>
-                    <li>Rasio Sell-out / Sell-in = 1,257 (permintaan 25,7% di atas pasokan)</li>
-                    <li>Target bulanan meningkat dari Rp145,8 juta menjadi Rp275,0 juta</li>
-                    <li>Skema deposit Rp200.000.000 diatur proporsional 3,8% dari total sell-in</li>
+                    <li>Total Sell‑in 3 tahun (inclPPN): Rp5,25 Miliar</li>
+                    <li>Total Sell‑out 3 tahun (incl PPN): Rp6,54 Miliar</li>
+                    <li>Rasio Sell‑out / Sell‑in = 1,246 (permintaan 24,6% di atas pasokan)</li>
+                    <li>Target bulanan meningkat dari Rp125 jt menjadi Rp166,7 jt (sell‑in) dan Rp150 jt menjadi Rp220 jt (sell‑out)</li>
+                    <li>Skema deposit Rp200.000.000 diatur proporsional 3,8% dari total sell‑in</li>
+                    <li><strong>Dukungan branding Jotun:</strong> Rp75.000.000 (Exlude PPN)</li>
+                    <li><strong>SPG/SPB</strong> disediakan JOTUN selama stok produk Jotun masih ada di Gradnmitra</li>
                 </ul>
             </div>
         </div>
@@ -664,45 +380,48 @@
 
 <script>
     (function() {
-        // Data awal (tidak diubah)
-        const sellInYear1 = 1500000000;
-        const sellInYear2 = 1750000000;
-        const sellInYear3 = 2000000000;
-        const totalSellIn = sellInYear1 + sellInYear2 + sellInYear3;
-        const sellOutMonthYear1 = 150000000;
-        const sellOutMonthYear2 = 180000000;
-        const sellOutMonthYear3 = 220000000;
-        const totalSellOut = (sellOutMonthYear1 * 12) + (sellOutMonthYear2 * 12) + (sellOutMonthYear3 * 12);
-        const semesterComposition = [0.05, 0.10, 0.15, 0.20, 0.25, 0.25];
+        // --- DATA TOTAL ---
+        const totalSellIn = 5250000000;
+        const totalSellOut = 6540000000;
+
+        // --- KOMPOSISI SEMESTER BARU ---
+        const compSellIn  = [0.1429, 0.1429, 0.1667, 0.1667, 0.1905, 0.1905];
+        const compSellOut = [0.1376, 0.1376, 0.1606, 0.1606, 0.2018, 0.2018];
+
         const semesterNames = [
             "Semester 2 - 2026", "Semester 1 - 2027", "Semester 2 - 2027",
             "Semester 1 - 2028", "Semester 2 - 2028", "Semester 1 - 2029"
         ];
+
+        // Hitung target per semester
         let semesterTargets = [];
-        for (let i=0; i<semesterComposition.length; i++) {
-            let pct = semesterComposition[i];
-            let sellinSem = Math.round(totalSellIn * pct);
-            let selloutSem = Math.round(totalSellOut * pct);
+        for (let i = 0; i < 6; i++) {
+            let sellinSem = Math.round(totalSellIn * compSellIn[i]);
+            let selloutSem = Math.round(totalSellOut * compSellOut[i]);
             let sellinPerBulan = Math.round(sellinSem / 6);
             let selloutPerBulan = Math.round(selloutSem / 6);
             semesterTargets.push({
                 semester: semesterNames[i],
-                persen: (pct*100)+"%",
+                pctSellIn: (compSellIn[i] * 100).toFixed(2) + '%',
+                pctSellOut: (compSellOut[i] * 100).toFixed(2) + '%',
                 sellinSem: sellinSem,
                 selloutSem: selloutSem,
                 sellinPerBulan: sellinPerBulan,
                 selloutPerBulan: selloutPerBulan
             });
         }
+
+        // Periode semester (September 2026 – Agustus 2029)
         const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         const semesterPeriods = [
-            { startYear:2026, startMonth:6, endYear:2026, endMonth:11, semIdx:0 },
-            { startYear:2027, startMonth:0, endYear:2027, endMonth:5, semIdx:1 },
-            { startYear:2027, startMonth:6, endYear:2027, endMonth:11, semIdx:2 },
-            { startYear:2028, startMonth:0, endYear:2028, endMonth:5, semIdx:3 },
-            { startYear:2028, startMonth:6, endYear:2028, endMonth:11, semIdx:4 },
-            { startYear:2029, startMonth:0, endYear:2029, endMonth:5, semIdx:5 }
+            { startYear:2026, startMonth:8, endYear:2027, endMonth:1, semIdx:0 },
+            { startYear:2027, startMonth:2, endYear:2027, endMonth:7, semIdx:1 },
+            { startYear:2027, startMonth:8, endYear:2028, endMonth:1, semIdx:2 },
+            { startYear:2028, startMonth:2, endYear:2028, endMonth:7, semIdx:3 },
+            { startYear:2028, startMonth:8, endYear:2029, endMonth:1, semIdx:4 },
+            { startYear:2029, startMonth:2, endYear:2029, endMonth:7, semIdx:5 }
         ];
+
         let monthlyData = [];
         for (let period of semesterPeriods) {
             const sem = semesterTargets[period.semIdx];
@@ -728,20 +447,21 @@
             }
         }
 
-        // Tabel semester
+        // === Tabel semester ===
         const semesterTargetBody = document.getElementById('semesterTargetBody');
         semesterTargetBody.innerHTML = '';
         semesterTargets.forEach(s => {
             const row = semesterTargetBody.insertRow();
             row.insertCell(0).innerText = s.semester;
-            row.insertCell(1).innerText = s.persen;
-            row.insertCell(2).innerHTML = `Rp ${s.sellinSem.toLocaleString('id-ID')}`;
-            row.insertCell(3).innerHTML = `Rp ${s.selloutSem.toLocaleString('id-ID')}`;
-            row.insertCell(4).innerHTML = `Rp ${s.sellinPerBulan.toLocaleString('id-ID')}`;
-            row.insertCell(5).innerHTML = `Rp ${s.selloutPerBulan.toLocaleString('id-ID')}`;
+            row.insertCell(1).innerText = s.pctSellIn;
+            row.insertCell(2).innerText = s.pctSellOut;
+            row.insertCell(3).innerHTML = `Rp ${s.sellinSem.toLocaleString('id-ID')}`;
+            row.insertCell(4).innerHTML = `Rp ${s.selloutSem.toLocaleString('id-ID')}`;
+            row.insertCell(5).innerHTML = `Rp ${s.sellinPerBulan.toLocaleString('id-ID')}`;
+            row.insertCell(6).innerHTML = `Rp ${s.selloutPerBulan.toLocaleString('id-ID')}`;
         });
 
-        // Trend Chart
+        // === Trend Chart ===
         const labels = monthlyData.map(d => d.label.substring(0,7));
         const ctx = document.getElementById('trendChart').getContext('2d');
         new Chart(ctx, {
@@ -749,19 +469,30 @@
             data: {
                 labels: labels,
                 datasets: [
-                    { label: 'Sell-in (excl PPN) / bulan', data: monthlyData.map(d=>d.sellinMonthly), borderColor: '#2C6E9B', borderWidth:2.2, pointRadius:1.2, tension:0.1 },
-                    { label: 'Sell-out (incl PPN) / bulan', data: monthlyData.map(d=>d.selloutMonthly), borderColor: '#E68A2E', borderWidth:2.2, pointRadius:1.2, tension:0.1 }
+                    { label: 'Sell‑in (inclPPN) / bulan', data: monthlyData.map(d=>d.sellinMonthly), borderColor: '#2C6E9B', borderWidth:2.2, pointRadius:1.2, tension:0.1 },
+                    { label: 'Sell‑out (incl PPN) / bulan', data: monthlyData.map(d=>d.selloutMonthly), borderColor: '#E68A2E', borderWidth:2.2, pointRadius:1.2, tension:0.1 }
                 ]
             },
             options: {
                 responsive: true, maintainAspectRatio: true,
-                plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: Rp ${ctx.raw.toLocaleString('id-ID')}` } }, legend: { position: 'top' } },
-                scales: { y: { ticks: { callback: (val) => 'Rp ' + val.toLocaleString('id-ID') }, title: { display: true, text: 'Rupiah' } },
-                          x: { ticks: { rotation: 45, autoSkip: true, maxRotation: 45, font: { size: 8 } }, title: { text: 'Periode (Juli 2026 - Juni 2029)' } } }
+                plugins: { 
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: Rp ${ctx.raw.toLocaleString('id-ID')}` } }, 
+                    legend: { position: 'top' } 
+                },
+                scales: { 
+                    y: { 
+                        ticks: { callback: (val) => 'Rp ' + val.toLocaleString('id-ID') }, 
+                        title: { display: true, text: 'Rupiah' } 
+                    },
+                    x: { 
+                        ticks: { rotation: 45, autoSkip: true, maxRotation: 45, font: { size: 8 } }, 
+                        title: { text: 'Periode (September 2026 - Agustus 2029)' } 
+                    } 
+                }
             }
         });
 
-        // Tabel harian
+        // === Tabel harian ===
         const dailyTbody = document.getElementById('dailyTableBody');
         dailyTbody.innerHTML = '';
         monthlyData.forEach(d => {
@@ -774,7 +505,7 @@
             row.insertCell(5).innerHTML = `<strong class="highlight-daily">Rp ${Math.round(d.selloutDaily).toLocaleString('id-ID')}</strong>`;
         });
 
-        // Ringkasan semester
+        // === Ringkasan semester ===
         const semesterMap = new Map();
         monthlyData.forEach(d => {
             let sem = d.semesterLabel;
@@ -802,15 +533,15 @@
         totalRow.insertCell(1).innerHTML = `<strong>Rp ${Math.round(totalSellInCalc).toLocaleString('id-ID')}</strong>`;
         totalRow.insertCell(2).innerHTML = `<strong>Rp ${Math.round(totalSellOutCalc).toLocaleString('id-ID')}</strong>`;
 
-        // Insight grid
+        // === Insight grid ===
         const insightGrid = document.getElementById('insightGrid');
         insightGrid.innerHTML = '';
         const i1 = document.createElement('div'); i1.className='insight-card';
-        i1.innerHTML = `<h3>📊 Total 36 Bulan</h3><p>Sell-in: Rp5.250M (excl PPN)<br>Sell-out: Rp6.600M (incl PPN)</p>`;
+        i1.innerHTML = `<h3>📊 Total 36 Bulan</h3><p>Sell‑in: Rp5.250M (inclPPN)<br>Sell‑out: Rp6.540M (incl PPN)</p>`;
         insightGrid.appendChild(i1);
         const i2 = document.createElement('div'); i2.className='insight-card';
         let ratio = totalSellOutCalc/totalSellInCalc;
-        i2.innerHTML = `<h3>🔄 Rasio Sell-out/Sell-in</h3><p>${ratio.toFixed(3)} (permintaan ${((ratio-1)*100).toFixed(1)}% lebih tinggi)</p>`;
+        i2.innerHTML = `<h3>🔄 Rasio Sell‑out/Sell‑in</h3><p>${ratio.toFixed(3)} (permintaan ${((ratio-1)*100).toFixed(1)}% lebih tinggi)</p>`;
         insightGrid.appendChild(i2);
         const i3 = document.createElement('div'); i3.className='insight-card';
         i3.innerHTML = `<h3>📈 Progresi Bulanan</h3><p>Awal: Rp${(monthlyData[0].selloutMonthly/1e6).toFixed(0)}jt → Akhir: Rp${(monthlyData[monthlyData.length-1].selloutMonthly/1e6).toFixed(0)}jt</p>`;
@@ -823,9 +554,9 @@
 
         const footer = document.getElementById('dynamicFooter');
         const totalDays = monthlyData.reduce((s,d)=>s+d.daysInMonth,0);
-        footer.innerHTML = `✅ Berdasarkan data sell-in tahunan (excl PPN) dan sell-out bulanan (incl PPN). Total 36 bulan = ${totalDays} hari | Skema deposit Rp200.000.000: bertahap, negosiasi % pencapaian, atau pengembalian penuh bersyarat target akhir 100%.`;
+        footer.innerHTML = `✅ Berdasarkan komposisi baru. Total 36 bulan = ${totalDays} hari | Skema deposit Rp200.000.000: bertahap, negosiasi %, atau pengembalian penuh bersyarat. <br> 🎨 Dukungan branding Jotun Rp75.000.000 (Excld PPN) · 🧑‍💼 SPG/SPB disediakan JOTUN selama Stok produk Jotun tersedia di Grandmitra.`;
 
-        // ====== KOMPOSISI PENJUALAN (doughnut, bar, scatter) ======
+        // ====== KOMPOSISI PENJUALAN (tetap) ======
         const totalPenjualan = 15798900650;
         const tokoData = [
             { nama: 'GrandMitra Bangunan PIK2', persen: 23.5 },
@@ -844,7 +575,6 @@
             row.insertCell(2).innerHTML = `Rp ${Math.round(nilaiToko[i]).toLocaleString('id-ID')}`;
         });
 
-        // Doughnut
         new Chart(document.getElementById('doughnutChart').getContext('2d'), {
             type: 'doughnut',
             data: {
@@ -864,7 +594,6 @@
             }
         });
 
-        // Bar
         new Chart(document.getElementById('barChart').getContext('2d'), {
             type: 'bar',
             data: {
@@ -878,7 +607,6 @@
             }
         });
 
-        // Scatter
         new Chart(document.getElementById('scatterChart').getContext('2d'), {
             type: 'scatter',
             data: {
@@ -898,16 +626,14 @@
             }
         });
 
-        // ====== ALOKASI JOTUN 36 BULAN ======
-        const targetJotun = 6600000000;
-        // Data dari gambar
+        // ====== ALOKASI JOTUN 36 BULAN (target 6,54M) ======
+        const targetJotun = 6540000000;
         const tokoAlokasi = [
             { nama: 'GrandMitra Bangunan PIK2', kontribusi: 23.5, sellOutAktual: 3712741653 },
             { nama: 'Mitra Bangunan Cipta', kontribusi: 26.5, sellOutAktual: 4186708672 },
             { nama: 'Mitra Bangunan', kontribusi: 18.5, sellOutAktual: 2922796620 },
             { nama: 'Toko Cat Mitra', kontribusi: 31.5, sellOutAktual: 4976653705 }
         ];
-        // Hitung alokasi Jotun per toko berdasarkan persentase kontribusi
         const alokasiData = tokoAlokasi.map(t => {
             const alokasiTotal = (t.kontribusi / 100) * targetJotun;
             const alokasiPerBulan = alokasiTotal / 36;
@@ -915,11 +641,10 @@
                 ...t,
                 alokasiTotal: alokasiTotal,
                 alokasiPerBulan: alokasiPerBulan,
-                sellOutPerBulan: t.sellOutAktual / 16 // karena periode Mar'25 - Jun'26 = 16 bulan (asumsi)
+                sellOutPerBulan: t.sellOutAktual / 16
             };
         });
 
-        // Isi tabel alokasi
         const alokasiBody = document.getElementById('alokasiTableBody');
         alokasiBody.innerHTML = '';
         alokasiData.forEach(t => {
@@ -932,7 +657,6 @@
             row.insertCell(5).innerText = t.kontribusi.toFixed(1) + '%';
         });
 
-        // Bar chart perbandingan Sell Out Aktual/Month vs Alokasi Jotun/Bulan
         new Chart(document.getElementById('alokasiBarChart').getContext('2d'), {
             type: 'bar',
             data: {
@@ -954,7 +678,6 @@
             }
         });
 
-        // Doughnut proporsi alokasi
         new Chart(document.getElementById('alokasiDoughnutChart').getContext('2d'), {
             type: 'doughnut',
             data: {
