@@ -87,7 +87,7 @@
             <h1>🎯 Jotun Dealer Target 36 Bulan (2026-2029)</h1>
             <div class="subhead">Sell‑in Include PPN · Sell‑out include PPN | Komposisi khusus per semester | Mulai September 2026</div>
             <div class="expectation-desc">
-                📊 <strong>Total Sell‑in 3 tahun (inclPPN):</strong> Rp5.250.000.000 | <strong>Total Sell‑out 3 tahun (incl PPN):</strong> Rp6.540.000.000<br>
+                📊 <strong>Total Sell‑in 3 tahun (ExcldPPN):</strong> Rp5.250.000.000 | <strong>Total Sell‑out 3 tahun (incl PPN):</strong> Rp6.540.000.000<br>
                 ✅ Komposisi Sell‑in: 14,29% → 14,29% → 16,67% → 16,67% → 19,05% → 19,05%<br>
                 ✅ Komposisi Sell‑out: 13,76% → 13,76% → 16,06% → 16,06% → 20,18% → 20,18%<br>
                 Periode: September 2026 – Agustus 2029
@@ -363,7 +363,7 @@
             <div style="flex:1.5; background:#d9e9f0; border-radius:20px; padding:12px 16px;">
                 <h3 style="margin:0 0 8px 0;">📌 Kesimpulan Strategis</h3>
                 <ul style="margin:0; padding-left:1.2rem; font-size:0.75rem;">
-                    <li>Total Sell‑in 3 tahun (inclPPN): Rp5,25 Miliar</li>
+                    <li>Total Sell‑in 3 tahun (excldPPN): Rp5,25 Miliar</li>
                     <li>Total Sell‑out 3 tahun (incl PPN): Rp6,54 Miliar</li>
                     <li>Rasio Sell‑out / Sell‑in = 1,246 (permintaan 24,6% di atas pasokan)</li>
                     <li>Target bulanan meningkat dari Rp125 jt menjadi Rp166,7 jt (sell‑in) dan Rp150 jt menjadi Rp220 jt (sell‑out)</li>
@@ -537,7 +537,7 @@
         const insightGrid = document.getElementById('insightGrid');
         insightGrid.innerHTML = '';
         const i1 = document.createElement('div'); i1.className='insight-card';
-        i1.innerHTML = `<h3>📊 Total 36 Bulan</h3><p>Sell‑in: Rp5.250M (inclPPN)<br>Sell‑out: Rp6.540M (incl PPN)</p>`;
+        i1.innerHTML = `<h3>📊 Total 36 Bulan</h3><p>Sell‑in: Rp5.250M (ExludePPN)<br>Sell‑out: Rp6.540M (incl PPN)</p>`;
         insightGrid.appendChild(i1);
         const i2 = document.createElement('div'); i2.className='insight-card';
         let ratio = totalSellOutCalc/totalSellInCalc;
